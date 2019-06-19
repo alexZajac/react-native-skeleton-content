@@ -3,6 +3,14 @@
   "version": "1.0.1",
   "description": "A simple and fully customizable React Native component that implements a skeleton-like loader",
   "main": "./src/index.js",
+  "keywords": [
+    "react native",
+    "skeleton",
+    "loader",
+    "placeholders",
+    "gradient",
+    "animation"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
