@@ -58,15 +58,15 @@ return (
 
 ```javascript
 render () {
-	const { isLoading } = this.state;
+    const { isLoading } = this.state;
     return (
-      <SkeletonContent
-			containerStyle={{flex: 1, width: 300}}
-			isLoading={isLoading}>
-		...
-	  />
-    )
-  }
+    <SkeletonContent
+        containerStyle={{flex: 1, width: 300}}
+        isLoading={isLoading}>
+        ...
+    />
+)
+}
 ```
 
 ### Props
@@ -94,14 +94,14 @@ See the playground section to experiment :
 ```javascript
 render () {
     return (
-      <SkeletonContent
-			containerStyle={{flex: 1, width: 300}}
-			animationType="shiverLeft"
-			isLoading={true}>
-		...
-	  />
+    <SkeletonContent
+        containerStyle={{flex: 1, width: 300}}
+        animationType="shiverLeft"
+        isLoading={true}>
+        ...
+    />
     )
-  }
+}
 ```
 
 **2** - Changing the colors and switching to "pulse" animation (boneColor, highlightColor and animationType prop) :
@@ -113,16 +113,16 @@ render () {
 ```javascript
 render () {
     return (
-      <SkeletonContent
-			containerStyle={{flex: 1, width: 300}}
-			boneColor="#121212"
-			highlightColor="#333333"
-			animationType="pulse"
-			isLoading={true}>
-		...
-	  />
+    <SkeletonContent
+        containerStyle={{flex: 1, width: 300}}
+        boneColor="#121212"
+        highlightColor="#333333"
+        animationType="pulse"
+        isLoading={true}>
+        ...
+    />
     )
-  }
+}
 ```
 
 **3** - Customizing the layout of the bones (layout prop) :
@@ -134,21 +134,21 @@ render () {
 ```javascript
 render () {
     return (
-      <SkeletonContent
-			containerStyle={{flex: 1, width: 300}}
-			animationType="shiverLeft"
-			layout={[
-			// long line
-			{ width: 220, height: 20, marginBottom: 6 },
-			// short line
-			{ width: 180, height: 20, marginBottom: 6 },
-			...
-			]}
-			isLoading={true}>
-		...
-	  />
+    <SkeletonContent
+        containerStyle={{flex: 1, width: 300}}
+        animationType="shiverLeft"
+        layout={[
+        // long line
+        { width: 220, height: 20, marginBottom: 6 },
+        // short line
+        { width: 180, height: 20, marginBottom: 6 },
+        ...
+        ]}
+        isLoading={true}>
+        ...
+    />
     )
-  }
+}
 ```
 
 ### Playground
