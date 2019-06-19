@@ -13,26 +13,14 @@ import {
   DEFAULT_BORDER_RADIUS,
   DEFAULT_HIGHLIGHT_COLOR,
   DEFAULT_EASING,
-  DEFAULT_INTENSITY,
   DEFAULT_DURATION,
   DEFAULT_ANIMATION
 } from "./Constants";
-
-const numberValidator = (props, propName, componentName, lower, upper) => {
-  if (props[propName] < lower || props[propName] > upper) {
-    return new Error(
-      `PropType error : Invalid range for ${
-        props[propName]
-      } in ${componentName}`
-    );
-  }
-};
 
 export default class SkeletonContent extends React.Component {
   constructor(props) {
     super(props);
     this.containerStyle = this.props.containerStyle;
-    this.intensity = this.props.intensity;
     this.duration = this.props.duration;
     this.easing = this.props.easing;
     this.highlightColor = this.props.highlightColor;
@@ -41,9 +29,9 @@ export default class SkeletonContent extends React.Component {
 
     this.animationPulse = new Animated.Value(0);
     this.animationShiver = new Animated.Value(0);
-    this.interpolatedOpacity = this.animationPulse.interpolate({
+    this.interpolatedBackgroundColor = this.animationPulse.interpolate({
       inputRange: [0, 1],
-      outputRange: [1, 1 - this.intensity]
+      outputRange: [this.boneColor, this.highlightColor]
     });
 
     this.gradientStart = this.getGradientDirection("start");
@@ -97,18 +85,18 @@ export default class SkeletonContent extends React.Component {
     }
   };
 
-  getBoneStyles = (boneLayout, interpolatedOpacity) => {
+  getBoneStyles = boneLayout => {
     let boneStyle = {
       width: boneLayout.width || 0,
       height: boneLayout.height || 0,
       borderRadius: boneLayout.borderRadius || DEFAULT_BORDER_RADIUS,
-      backgroundColor: boneLayout.backgroundColor || this.boneColor,
       ...boneLayout
     };
     if (this.animationType === "pulse") {
-      boneStyle.opacity = interpolatedOpacity;
-    } else if (this.animationType !== "none") {
+      boneStyle.backgroundColor = this.interpolatedBackgroundColor;
+    } else {
       boneStyle.overflow = "hidden";
+      boneStyle.backgroundColor = boneLayout.backgroundColor || this.boneColor;
     }
     return boneStyle;
   };
@@ -148,7 +136,7 @@ export default class SkeletonContent extends React.Component {
   getPositionRange = boneLayout => {
     let outputRange = [];
     const boneWidth = boneLayout.width || 0;
-    const boneHeight = boneLayout.height || 0;
+    const boneHeight = boneLayout.height || 100;
 
     if (this.animationType === "shiverRight") {
       outputRange.push(-boneWidth, boneWidth);
@@ -163,13 +151,11 @@ export default class SkeletonContent extends React.Component {
   };
 
   getStaticBone = layoutStyle => (
-    <Animated.View
-      style={this.getBoneStyles(layoutStyle, this.interpolatedOpacity)}
-    />
+    <Animated.View style={this.getBoneStyles(layoutStyle)} />
   );
 
   getShiverBone = layoutStyle => (
-    <View style={this.getBoneStyles(layoutStyle, this.interpolatedOpacity)}>
+    <View style={this.getBoneStyles(layoutStyle)}>
       <Animated.View
         style={[
           styles.absoluteGradient,
@@ -245,8 +231,7 @@ const styles = StyleSheet.create({
 SkeletonContent.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   layout: PropTypes.arrayOf(PropTypes.object),
-  duration: (props, propName, componentName) =>
-    numberValidator(props, propName, componentName, 0, Infinity),
+  duration: PropTypes.number,
   containerStyle: ViewPropTypes.style,
   easing: PropTypes.oneOfType([typeof Easing]),
   animationType: PropTypes.oneOf([
@@ -258,8 +243,6 @@ SkeletonContent.propTypes = {
     "pulse"
   ]),
   boneColor: PropTypes.string,
-  intensity: (props, propName, componentName) =>
-    numberValidator(props, propName, componentName, 0, 1),
   highlightColor: PropTypes.string
 };
 
@@ -271,6 +254,5 @@ SkeletonContent.defaultProps = {
   animationType: DEFAULT_ANIMATION,
   isLoading: true,
   boneColor: DEFAULT_BONE_COLOR,
-  intensity: DEFAULT_INTENSITY,
   highlightColor: DEFAULT_HIGHLIGHT_COLOR
 };
