@@ -1,10 +1,10 @@
 import { Component } from "react";
 
 interface SkeletonContentProps {
-  isLoaded: boolean;
-  layout: Array<object>;
+  isLoading: boolean;
+  layout?: Array<object>;
   duration?: number;
-  style?: object;
+  containerStyle?: object;
   animationType?:
     | "none"
     | "shiverLeft"

@@ -31,7 +31,7 @@ const numberValidator = (props, propName, componentName, lower, upper) => {
 export default class SkeletonContent extends React.Component {
   constructor(props) {
     super(props);
-    this.style = this.props.style;
+    this.containerStyle = this.props.containerStyle;
     this.intensity = this.props.intensity;
     this.duration = this.props.duration;
     this.easing = this.props.easing;
@@ -50,17 +50,17 @@ export default class SkeletonContent extends React.Component {
     this.gradientEnd = this.getGradientDirection("end");
 
     this.state = {
-      isLoaded: this.props.isLoaded,
+      isLoading: this.props.isLoading,
       layout: this.props.layout
     };
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
     if (
-      nextProps.isLoaded !== prevState.isLoaded ||
+      nextProps.isLoading !== prevState.isLoading ||
       nextProps.layout !== prevState.layout
     ) {
-      return { isLoaded: nextProps.isLoaded, layout: nextProps.layout };
+      return { isLoading: nextProps.isLoading, layout: nextProps.layout };
     }
     return null;
   }
@@ -162,51 +162,65 @@ export default class SkeletonContent extends React.Component {
     return outputRange;
   };
 
-  getBones = layout => {
-    const iterator = Array.from(new Array(layout.length));
-    return iterator.map((_, i) => {
-      if (this.animationType === "pulse" || this.animationType === "none") {
-        return (
-          <Animated.View
-            style={this.getBoneStyles(layout[i], this.interpolatedOpacity)}
-          />
-        );
-      } else {
-        return (
-          <View style={this.getBoneStyles(layout[i], this.interpolatedOpacity)}>
-            <Animated.View
-              style={[
-                styles.absoluteGradient,
-                {
-                  transform: [
-                    this.getGradientTransform(this.animationShiver, layout[i])
-                  ]
-                }
-              ]}
-            >
-              <LinearGradient
-                colors={[this.boneColor, this.highlightColor, this.boneColor]}
-                start={this.gradientStart}
-                end={this.gradientEnd}
-                style={styles.gradientChild}
-              />
-            </Animated.View>
-          </View>
-        );
-      }
-    });
+  getStaticBone = layoutStyle => (
+    <Animated.View
+      style={this.getBoneStyles(layoutStyle, this.interpolatedOpacity)}
+    />
+  );
+
+  getShiverBone = layoutStyle => (
+    <View style={this.getBoneStyles(layoutStyle, this.interpolatedOpacity)}>
+      <Animated.View
+        style={[
+          styles.absoluteGradient,
+          {
+            transform: [
+              this.getGradientTransform(this.animationShiver, layoutStyle)
+            ]
+          }
+        ]}
+      >
+        <LinearGradient
+          colors={[this.boneColor, this.highlightColor, this.boneColor]}
+          start={this.gradientStart}
+          end={this.gradientEnd}
+          style={styles.gradientChild}
+        />
+      </Animated.View>
+    </View>
+  );
+
+  getBones = (layout, children) => {
+    if (layout.length > 0) {
+      const iterator = Array.from(new Array(layout.length));
+      return iterator.map((_, i) => {
+        if (this.animationType === "pulse" || this.animationType === "none") {
+          return this.getStaticBone(layout[i]);
+        } else {
+          return this.getShiverBone(layout[i]);
+        }
+      });
+    } else {
+      return React.Children.map(children, child => {
+        if (this.animationType === "pulse" || this.animationType === "none") {
+          return this.getStaticBone(child.props.style);
+        } else {
+          return this.getShiverBone(child.props.style);
+        }
+      });
+    }
   };
 
-  renderLayout = (isLoaded, bones, children) => (isLoaded ? children : bones);
+  renderLayout = (isLoading, bones, children) => (isLoading ? bones : children);
 
   render() {
-    const { isLoaded, layout } = this.state;
+    const { isLoading, layout } = this.state;
     const { children } = this.props;
-    const bones = this.getBones(layout);
+    const bones = this.getBones(layout, children);
 
     return (
-      <View style={this.style}>
-        {this.renderLayout(isLoaded, bones, children)}
+      <View style={this.containerStyle}>
+        {this.renderLayout(isLoading, bones, children)}
       </View>
     );
   }
@@ -229,11 +243,11 @@ const styles = StyleSheet.create({
 });
 
 SkeletonContent.propTypes = {
-  isLoaded: PropTypes.bool.isRequired,
-  layout: PropTypes.arrayOf(PropTypes.object).isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  layout: PropTypes.arrayOf(PropTypes.object),
   duration: (props, propName, componentName) =>
     numberValidator(props, propName, componentName, 0, Infinity),
-  style: ViewPropTypes.style,
+  containerStyle: ViewPropTypes.style,
   easing: PropTypes.oneOfType([typeof Easing]),
   animationType: PropTypes.oneOf([
     "none",
@@ -250,12 +264,12 @@ SkeletonContent.propTypes = {
 };
 
 SkeletonContent.defaultProps = {
-  style: styles.container,
+  containerStyle: styles.container,
   easing: DEFAULT_EASING,
   duration: DEFAULT_DURATION,
   layout: [],
   animationType: DEFAULT_ANIMATION,
-  isLoaded: false,
+  isLoading: true,
   boneColor: DEFAULT_BONE_COLOR,
   intensity: DEFAULT_INTENSITY,
   highlightColor: DEFAULT_HIGHLIGHT_COLOR
