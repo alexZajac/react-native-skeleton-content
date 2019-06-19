@@ -33,21 +33,21 @@ import SkeletonContent from "react-native-skeleton-content";
 render () {
 return (
 <SkeletonContent
-containerStyle={{flex: 1, width: 300}}
-isLoading={false}
-layout={[
-{ width: 220, height: 20, marginBottom: 6 },
-{ width: 180, height: 20, marginBottom: 6 },
-]}
->
+    containerStyle={{flex: 1, width: 300}}
+    isLoading={false}
+    layout={[
+    { width: 220, height: 20, marginBottom: 6 },
+    { width: 180, height: 20, marginBottom: 6 },
+    ]}
+    >
 
-<Text style={styles.normalText}>
-    Your content
-</Text>
+    <Text style={styles.normalText}>
+        Your content
+    </Text>
 
-<Text style={styles.bigText}>
-    Other content
-</Text>
+    <Text style={styles.bigText}>
+        Other content
+    </Text>
 
 </SkeletonContent>
 )
