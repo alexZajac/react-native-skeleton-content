@@ -31,27 +31,27 @@ import SkeletonContent from "react-native-skeleton-content";
 
 ```javascript
 render () {
-    return (
-      <SkeletonContent
-			containerStyle={{flex: 1, width: 300}}
-			isLoading={false}
-			layout={[
-			{ width: 220, height: 20, marginBottom: 6 },
-			{ width: 180, height: 20, marginBottom: 6 },
-			]}
-			>
+return (
+<SkeletonContent
+containerStyle={{flex: 1, width: 300}}
+isLoading={false}
+layout={[
+{ width: 220, height: 20, marginBottom: 6 },
+{ width: 180, height: 20, marginBottom: 6 },
+]}
+>
 
-					<Text style={styles.normalText}>
-						Your content
-					</Text>
+<Text style={styles.normalText}>
+    Your content
+</Text>
 
-					<Text style={styles.bigText}>
-						Other content
-					</Text>
+<Text style={styles.bigText}>
+    Other content
+</Text>
 
-	  </SkeletonContent>
-    )
-  }
+</SkeletonContent>
+)
+}
 ```
 
 3.  Then simply sync the prop `isLoading` to your state to show/hide the SkeletonContent when the assets/data are available to the user.
