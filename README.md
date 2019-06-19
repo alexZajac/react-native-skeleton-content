@@ -1,6 +1,6 @@
 ## React Native Skeleton Content
 
-<img width="220px" align="right" src="https://raw.githubusercontent.com/rt2zz/react-native-drawer/master/examples/rn-drawer.gif" />
+<!-- <img width="220px" align="right" src="https://raw.githubusercontent.com/rt2zz/react-native-drawer/master/examples/rn-drawer.gif" /> -->
 
 React native Skeleton Content, a simple yet fully customizable component made to achieve performant loading in a Skeleton-style. Works in both iOS and Android.
 
