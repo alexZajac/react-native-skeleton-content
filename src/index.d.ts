@@ -5,13 +5,16 @@ interface SkeletonContentProps {
   layout?: Array<object>;
   duration?: number;
   containerStyle?: object;
-  animationType?:
-    | "none"
-    | "shiverLeft"
-    | "shiverRight"
-    | "shiverTop"
-    | "shiverDown"
-    | "pulse";
+  animationType?: "none" | "shiver" | "pulse";
+  animationDirection?:
+    | "horizontalLeft"
+    | "horizontalRight"
+    | "verticalTop"
+    | "verticalDown"
+    | "diagonalDownLeft"
+    | "diagonalDownRight"
+    | "diagonalTopLeft"
+    | "diagonalTopRight";
   boneColor?: string;
   intensity?: number;
   highlightColor?: string;

@@ -26,7 +26,7 @@ import SkeletonContent from "react-native-skeleton-content";
 
 2.  Once you create the SkeletonContent, you have two options:
 
-- **Child Layout** : The component will figure out the layout of its bones with the dimensions of its direct children (make sure to wrap them in sized-views, with **width** and **height** properties).
+- **Child Layout** : The component will figure out the layout of its bones with the dimensions of its direct children (make sure to wrap them in sized-views, with **width** and **height** properties, otherwise, shiver animation might not work).
 - **Custom Layout** : You provide a prop `layout` to the component specifying the size of the bones (see the [Examples](#examples) section below). Herunder is the example with a custom layout.
 
 ```javascript
@@ -71,21 +71,22 @@ render () {
 
 ### Props
 
-| Name           | Type             | Default                 | Description                                                        |
-| -------------- | ---------------- | ----------------------- | ------------------------------------------------------------------ |
-| isLoading      | bool             | **required**            | Shows the Skeleton bones when true                                 |
-| layout         | array of objects | []                      | A custom layout for the Skeleton bones                             |
-| duration       | number           | 1200 ms                 | Duration of one cycle of animation                                 |
-| containerStyle | object           | flex: 1                 | The style applied to the View containing the bones                 |
-| easing         | Easing           | bezier(0.5, 0, 0.25, 1) | Easing of the bones animation                                      |
-| animationType  | string           | "shiverLeft"            | The animation to be used for animating the bones (see demos below) |
-| boneColor      | string           | "#E1E9EE"               | Color of the bones                                                 |
-| highlightColor | string           | "#F2F8FC"               | Color of the highlight of the bones                                |
+| Name               | Type             | Default                 | Description                                                                                                                       |
+| ------------------ | ---------------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| isLoading          | bool             | **required**            | Shows the Skeleton bones when true                                                                                                |
+| layout             | array of objects | []                      | A custom layout for the Skeleton bones                                                                                            |
+| duration           | number           | 1200 ms                 | Duration of one cycle of animation                                                                                                |
+| containerStyle     | object           | flex: 1                 | The style applied to the View containing the bones                                                                                |
+| easing             | Easing           | bezier(0.5, 0, 0.25, 1) | Easing of the bones animation                                                                                                     |
+| animationType      | string           | "shiver"                | The animation to be used for animating the bones (see demos below)                                                                |
+| animationDirection | string           | "horizontalRight"       | Used only for shiver animation, describes the direction and end-point (ex: horizontalRight goes on the x-axis from left to right) |
+| boneColor          | string           | "#E1E9EE"               | Color of the bones                                                                                                                |
+| highlightColor     | string           | "#F2F8FC"               | Color of the highlight of the bones                                                                                               |
 
 ### Examples
 
 See the playground section to experiment :
-**1** - Changing the direction of the animation (animationType prop) :
+**1** - Changing the direction of the animation (animationDirection prop) :
 
 <p align="center">
 <img width="300px" src="https://raw.githubusercontent.com/alexZajac/react-native-skeleton-content/master/demos/direction_change.gif" />
@@ -96,7 +97,7 @@ render () {
     return (
     <SkeletonContent
         containerStyle={{flex: 1, width: 300}}
-        animationType="shiverLeft"
+        animationDirection="horizontalLeft"
         isLoading={true}>
         ...
     />
@@ -136,7 +137,7 @@ render () {
     return (
     <SkeletonContent
         containerStyle={{flex: 1, width: 300}}
-        animationType="shiverLeft"
+        animationDirection="horizontalLeft"
         layout={[
         // long line
         { width: 220, height: 20, marginBottom: 6 },
