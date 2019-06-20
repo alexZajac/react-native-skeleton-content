@@ -16,14 +16,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alexZjc/react-native-skeleton-content.git"
+    "url": "git+https://github.com/alexZajac/react-native-skeleton-content.git"
   },
   "author": "Alexandre Zajac",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/alexZjc/react-native-skeleton-content/issues"
+    "url": "https://github.com/alexZajac/react-native-skeleton-content/issues"
   },
-  "homepage": "https://github.com/alexZjc/react-native-skeleton-content#readme",
+  "homepage": "https://github.com/alexZajac/react-native-skeleton-content#readme",
   "devDependencies": {
     "metro-react-native-babel-preset": "^0.54.1"
   }
