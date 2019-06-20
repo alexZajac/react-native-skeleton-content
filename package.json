@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alexZjc/react-native-skeleton-content.git"
+    "url": "git+https://github.com/alexZajac/react-native-skeleton-content.git"
   },
   "author": "Alexandre Zajac",
   "license": "MIT",
