@@ -1,13 +1,13 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
+import * as React from "react";
+import PropTypes from "prop-types";
 import {
   View,
   StyleSheet,
   Animated,
   Easing,
-  ViewPropTypes,
-} from 'react-native';
-import { LinearGradient } from 'expo';
+  ViewPropTypes
+} from "react-native";
+import { LinearGradient } from "expo";
 import {
   DEFAULT_BONE_COLOR,
   DEFAULT_BORDER_RADIUS,
@@ -15,8 +15,8 @@ import {
   DEFAULT_EASING,
   DEFAULT_DURATION,
   DEFAULT_ANIMATION_TYPE,
-  DEFAULT_ANIMATION_DIRECTION,
-} from './Constants';
+  DEFAULT_ANIMATION_DIRECTION
+} from "./Constants";
 
 export default class SkeletonContent extends React.Component {
   constructor(props) {
@@ -41,7 +41,7 @@ export default class SkeletonContent extends React.Component {
 
     this.state = {
       isLoading: this.props.isLoading,
-      layout: this.props.layout,
+      layout: this.props.layout
     };
   }
 
@@ -60,20 +60,20 @@ export default class SkeletonContent extends React.Component {
   }
 
   playAnimation = () => {
-    if (this.animationType === 'pulse') {
+    if (this.animationType === "pulse") {
       Animated.loop(
         Animated.sequence([
           Animated.timing(this.animationPulse, {
             toValue: 1,
             duration: this.duration / 2,
             easing: this.easing,
-            delay: this.duration,
+            delay: this.duration
           }),
           Animated.timing(this.animationPulse, {
             toValue: 0,
             easing: this.easing,
-            duration: this.duration / 2,
-          }),
+            duration: this.duration / 2
+          })
         ])
       ).start();
     } else {
@@ -81,7 +81,7 @@ export default class SkeletonContent extends React.Component {
         Animated.timing(this.animationShiver, {
           toValue: 1,
           duration: this.duration,
-          easing: this.easing,
+          easing: this.easing
         })
       ).start();
     }
@@ -89,20 +89,20 @@ export default class SkeletonContent extends React.Component {
 
   getGradientStartDirection = () => {
     let direction = {};
-    if (this.animationType === 'shiver') {
+    if (this.animationType === "shiver") {
       if (
-        this.animationDirection === 'horizontalLeft' ||
-        this.animationDirection === 'horizontalRight' ||
-        this.animationDirection === 'verticalTop' ||
-        this.animationDirection === 'verticalDown' || 
-        this.animationDirection === 'diagonalDownRight'
+        this.animationDirection === "horizontalLeft" ||
+        this.animationDirection === "horizontalRight" ||
+        this.animationDirection === "verticalTop" ||
+        this.animationDirection === "verticalDown" ||
+        this.animationDirection === "diagonalDownRight"
       ) {
         direction = { x: 0, y: 0 };
-      } else if (this.animationDirection === 'diagonalTopLeft') {
+      } else if (this.animationDirection === "diagonalTopLeft") {
         direction = { x: 1, y: 1 };
-      } else if (this.animationDirection === 'diagonalTopRight') {
+      } else if (this.animationDirection === "diagonalTopRight") {
         direction = { x: 0, y: 1 };
-      } else if (this.animationDirection === 'diagonalDownLeft') {
+      } else if (this.animationDirection === "diagonalDownLeft") {
         direction = { x: 1, y: 0 };
       }
     }
@@ -111,22 +111,22 @@ export default class SkeletonContent extends React.Component {
 
   getGradientEndDirection = () => {
     let direction = {};
-    if (this.animationType === 'shiver') {
+    if (this.animationType === "shiver") {
       if (
-        this.animationDirection === 'horizontalLeft' ||
-        this.animationDirection === 'horizontalRight' ||
-        this.animationDirection === 'diagonalTopRight'
+        this.animationDirection === "horizontalLeft" ||
+        this.animationDirection === "horizontalRight" ||
+        this.animationDirection === "diagonalTopRight"
       ) {
         direction = { x: 1, y: 0 };
       } else if (
-        this.animationDirection === 'verticalTop' ||
-        this.animationDirection === 'verticalDown' ||
-        this.animationDirection === 'diagonalDownLeft'
+        this.animationDirection === "verticalTop" ||
+        this.animationDirection === "verticalDown" ||
+        this.animationDirection === "diagonalDownLeft"
       ) {
         direction = { x: 0, y: 1 };
-      } else if (this.animationDirection === 'diagonalTopLeft') {
+      } else if (this.animationDirection === "diagonalTopLeft") {
         direction = { x: 0, y: 0 };
-      } else if (this.animationDirection === 'diagonalDownRight') {
+      } else if (this.animationDirection === "diagonalDownRight") {
         direction = { x: 1, y: 1 };
       }
     }
@@ -138,9 +138,9 @@ export default class SkeletonContent extends React.Component {
       width: boneLayout.width || 0,
       height: boneLayout.height || 0,
       borderRadius: boneLayout.borderRadius || DEFAULT_BORDER_RADIUS,
-      ...boneLayout,
+      ...boneLayout
     };
-    if (this.animationType === 'pulse') {
+    if (this.animationType === "pulse") {
       boneStyle.backgroundColor = this.interpolatedBackgroundColor;
     } else {
       boneStyle.overflow = "hidden";
@@ -156,8 +156,8 @@ export default class SkeletonContent extends React.Component {
       outputRange: this.getPositionRange(boneLayout)
     });
     if (
-      this.animationDirection !== 'verticalTop' &&
-      this.animationDirection !== 'verticalDown'
+      this.animationDirection !== "verticalTop" &&
+      this.animationDirection !== "verticalDown"
     ) {
       transform = { translateX: interpolatedPosition };
     } else {
@@ -172,20 +172,20 @@ export default class SkeletonContent extends React.Component {
     const boneHeight = boneLayout.height || 0;
 
     if (
-      this.animationDirection === 'horizontalRight' ||
-      this.animationDirection === 'diagonalDownRight' ||
-      this.animationDirection === 'diagonalTopRight'
+      this.animationDirection === "horizontalRight" ||
+      this.animationDirection === "diagonalDownRight" ||
+      this.animationDirection === "diagonalTopRight"
     ) {
       outputRange.push(-boneWidth, boneWidth);
     } else if (
-      this.animationDirection === 'horizontalLeft' ||
-      this.animationDirection === 'diagonalDownLeft' ||
-      this.animationDirection === 'diagonalTopLeft'
+      this.animationDirection === "horizontalLeft" ||
+      this.animationDirection === "diagonalDownLeft" ||
+      this.animationDirection === "diagonalTopLeft"
     ) {
       outputRange.push(boneWidth, -boneWidth);
-    } else if (this.animationDirection === 'verticalDown') {
+    } else if (this.animationDirection === "verticalDown") {
       outputRange.push(-boneHeight, boneHeight);
-    } else if (this.animationDirection === 'verticalTop') {
+    } else if (this.animationDirection === "verticalTop") {
       outputRange.push(boneHeight, -boneHeight);
     }
     return outputRange;
@@ -201,9 +201,10 @@ export default class SkeletonContent extends React.Component {
         style={[
           styles.absoluteGradient,
           {
-            transform: [this.getGradientTransform(layoutStyle)],
-          },
-        ]}>
+            transform: [this.getGradientTransform(layoutStyle)]
+          }
+        ]}
+      >
         <LinearGradient
           colors={[this.boneColor, this.highlightColor, this.boneColor]}
           start={this.gradientStart}
@@ -218,7 +219,7 @@ export default class SkeletonContent extends React.Component {
     if (layout.length > 0) {
       const iterator = Array.from(new Array(layout.length));
       return iterator.map((_, i) => {
-        if (this.animationType === 'pulse' || this.animationType === 'none') {
+        if (this.animationType === "pulse" || this.animationType === "none") {
           return this.getStaticBone(layout[i]);
         } else {
           return this.getShiverBone(layout[i]);
@@ -226,10 +227,11 @@ export default class SkeletonContent extends React.Component {
       });
     } else {
       return React.Children.map(children, child => {
-        if (this.animationType === 'pulse' || this.animationType === 'none') {
-          return this.getStaticBone(child.props.style);
+        const styling = child.props.style || {};
+        if (this.animationType === "pulse" || this.animationType === "none") {
+          return this.getStaticBone(styling);
         } else {
-          return this.getShiverBone(child.props.style);
+          return this.getShiverBone(styling);
         }
       });
     }
@@ -252,18 +254,18 @@ export default class SkeletonContent extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    flex: 1
   },
   absoluteGradient: {
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
+    position: "absolute",
+    width: "100%",
+    height: "100%"
   },
   gradientChild: {
-    flex: 1,
-  },
+    flex: 1
+  }
 });
 
 SkeletonContent.propTypes = {
@@ -272,19 +274,19 @@ SkeletonContent.propTypes = {
   duration: PropTypes.number,
   containerStyle: ViewPropTypes.style,
   easing: PropTypes.oneOfType([typeof Easing]),
-  animationType: PropTypes.oneOf(['none', 'shiver', 'pulse']),
+  animationType: PropTypes.oneOf(["none", "shiver", "pulse"]),
   animationDirection: PropTypes.oneOf([
-    'horizontalLeft',
-    'horizontalRight',
-    'verticalTop',
-    'verticalDown',
-    'diagonalDownLeft',
-    'diagonalDownRight',
-    'diagonalTopLeft',
-    'diagonalTopRight',
+    "horizontalLeft",
+    "horizontalRight",
+    "verticalTop",
+    "verticalDown",
+    "diagonalDownLeft",
+    "diagonalDownRight",
+    "diagonalTopLeft",
+    "diagonalTopRight"
   ]),
   boneColor: PropTypes.string,
-  highlightColor: PropTypes.string,
+  highlightColor: PropTypes.string
 };
 
 SkeletonContent.defaultProps = {
@@ -296,5 +298,5 @@ SkeletonContent.defaultProps = {
   animationDirection: DEFAULT_ANIMATION_DIRECTION,
   isLoading: true,
   boneColor: DEFAULT_BONE_COLOR,
-  highlightColor: DEFAULT_HIGHLIGHT_COLOR,
+  highlightColor: DEFAULT_HIGHLIGHT_COLOR
 };
