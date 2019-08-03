@@ -1,16 +1,19 @@
 ## React Native Skeleton Content
 
+> If you are not using expo, please head up to [this page](https://github.com/alexZajac/react-native-skeleton-content-nonexpo) instead.
+
 <img width="220px" align="right" src="https://raw.githubusercontent.com/alexZajac/react-native-skeleton-content/master/demos/main.gif" />
 
 React native Skeleton Content, a simple yet fully customizable component made to achieve loading animation in a Skeleton-style. Works in both iOS and Android.
 
 [![npm version](https://img.shields.io/npm/v/react-native-skeleton-content.svg?style=flat-square)](https://www.npmjs.com/package/react-native-skeleton-content)
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [Props](#props)
-- [Examples](#examples)
-- [Playground](#playground)
+- [React Native Skeleton Content](#react-native-skeleton-content)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Props](#props)
+  - [Examples](#examples)
+  - [Playground](#playground)
 
 ### Installation
 

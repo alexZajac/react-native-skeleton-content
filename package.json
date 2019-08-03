@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/alexZajac/react-native-skeleton-content#readme",
   "devDependencies": {
-    "metro-react-native-babel-preset": "^0.54.1"
+    "metro-react-native-babel-preset": "^0.55.0"
   },
   "dependencies": {
     "lodash": "^4.17.14"
