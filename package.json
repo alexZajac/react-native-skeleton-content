@@ -1,6 +1,6 @@
 {
   "name": "react-native-skeleton-content",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A simple and fully customizable React Native component that implements a skeleton-like loader",
   "main": "./src/index.js",
   "keywords": [
