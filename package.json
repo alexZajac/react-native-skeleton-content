@@ -28,6 +28,7 @@
     "metro-react-native-babel-preset": "^0.55.0"
   },
   "dependencies": {
+    "expo-linear-gradient": "^7.0.0",
     "lodash": "^4.17.14"
   }
 }

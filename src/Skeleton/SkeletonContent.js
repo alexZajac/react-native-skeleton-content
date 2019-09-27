@@ -7,7 +7,7 @@ import {
   Easing,
   ViewPropTypes
 } from "react-native";
-import { LinearGradient } from "expo";
+import { LinearGradient } from "expo-linear-gradient";
 import {
   DEFAULT_BONE_COLOR,
   DEFAULT_BORDER_RADIUS,
