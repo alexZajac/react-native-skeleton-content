@@ -1,2 +1,2 @@
-import SkeletonContent from "./Skeleton";
+import SkeletonContent from './SkeletonContent';
 export default SkeletonContent;

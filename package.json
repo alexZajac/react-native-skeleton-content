@@ -2,7 +2,8 @@
   "name": "react-native-skeleton-content",
   "version": "1.0.8",
   "description": "A simple and fully customizable React Native component that implements a skeleton-like loader",
-  "main": "./src/index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "keywords": [
     "react native",
     "skeleton",
@@ -11,8 +12,18 @@
     "gradient",
     "animation"
   ],
+  "files": [
+    "lib/**/*"
+  ],
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
@@ -25,15 +36,36 @@
   },
   "homepage": "https://github.com/alexZajac/react-native-skeleton-content#readme",
   "devDependencies": {
+    "@react-native-community/cli": "^2.9.0",
+    "@types/enzyme": "^3.10.3",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/jest": "^24.0.18",
     "@types/react": "^16.9.5",
+    "@types/react-native": "^0.60.19",
+    "coveralls": "^3.0.7",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
+    "enzyme-to-json": "^3.4.2",
     "jest": "^24.9.0",
+    "jest-enzyme": "^7.1.1",
+    "jsdom": "^15.2.0",
+    "metro": "^0.56.0",
+    "metro-inspector-proxy": "^0.56.0",
     "metro-react-native-babel-preset": "^0.55.0",
+    "prettier": "^1.18.2",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-native": "^0.61.2",
+    "react-native-unimodules": "^0.7.0-rc.1",
     "ts-jest": "^24.1.0",
-    "typescript": "^3.6.3"
+    "tslint": "^5.20.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "tslint-react": "^4.1.0",
+    "typescript": "^3.6.4"
   },
   "dependencies": {
-    "expo-linear-gradient": "^7.0.0",
+    "expo-linear-gradient": "^7.0.1",
     "lodash": "^4.17.14"
   }
 }

@@ -1,0 +1,18 @@
+{
+  "preset": "react-native",
+  "transform": {
+    "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js",
+    "\\.(ts|tsx)$": "ts-jest"
+  },
+  "snapshotSerializers": ["enzyme-to-json/serializer"],
+  "globals": {
+    "ts-jest": {
+      "tsConfig": "tsconfig.jest.json"
+    }
+  },
+  "setupFiles": ["./src/setupTests.js"],
+  "setupFilesAfterEnv": ["<rootDir>setup-test-env.js"],
+  "moduleFileExtensions": ["ts", "tsx", "js"],
+  "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+  "coveragePathIgnorePatterns": ["/node_modules/", "/src/setupTests.js", "package.json", "package-lock.json"]
+}
