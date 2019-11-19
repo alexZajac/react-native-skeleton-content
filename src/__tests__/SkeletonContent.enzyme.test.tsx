@@ -19,7 +19,7 @@ import {
   DEFAULT_LOADING,
 } from '../Constants';
 
-// describe('SkeletonComponent testing', () => {
+describe('SkeletonComponent testing', () => {
 // TODO: Find the integration issue between expo-linear-gradient and Jest with Enzyme
 // it('should render empty alone', () => {
 //   const component = shallow(<SkeletonContent />);
@@ -305,4 +305,4 @@ import {
 //   ).toEqual([DEFAULT_BONE_COLOR, DEFAULT_HIGHLIGHT_COLOR, DEFAULT_BONE_COLOR]);
 //   component.unmount();
 // });
-// });
+});

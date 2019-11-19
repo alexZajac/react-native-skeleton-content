@@ -14,5 +14,6 @@
   "setupFilesAfterEnv": ["<rootDir>setup-test-env.js"],
   "moduleFileExtensions": ["ts", "tsx", "js"],
   "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+  "transformIgnorePatterns": ["node_modules/?!(expo-linear-gradient)"],
   "coveragePathIgnorePatterns": ["/node_modules/", "/src/setupTests.js", "package.json", "package-lock.json"]
 }

@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { Animated, StyleSheet, View } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import * as React from "react";
+import { Animated, StyleSheet, View } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 import {
   DEFAULT_ANIMATION_TYPE,
   DEFAULT_ANIMATION_DIRECTION,
@@ -11,19 +11,22 @@ import {
   DEFAULT_HIGHLIGHT_COLOR,
   DEFAULT_INTENSITY,
   DEFAULT_LOADING,
-} from './Constants';
-import { ISkeletonContentProps, IState, IDirection, CustomViewStyle } from './Constants';
+  ISkeletonContentProps,
+  IState,
+  IDirection,
+  CustomViewStyle,
+} from "./Constants";
 
 const styles = StyleSheet.create({
   absoluteGradient: {
-    height: '100%',
-    position: 'absolute',
-    width: '100%',
+    height: "100%",
+    position: "absolute",
+    width: "100%",
   },
   container: {
-    alignItems: 'center',
+    alignItems: "center",
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   gradientChild: {
     flex: 1,
@@ -61,20 +64,20 @@ export default class SkeletonContent extends React.Component<ISkeletonContentPro
 
   getGradientStartDirection = (): IDirection => {
     let direction: IDirection = { x: 0, y: 0 };
-    if (this.props.animationType === 'shiver') {
+    if (this.props.animationType === "shiver") {
       if (
-        this.props.animationDirection === 'horizontalLeft' ||
-        this.props.animationDirection === 'horizontalRight' ||
-        this.props.animationDirection === 'verticalTop' ||
-        this.props.animationDirection === 'verticalDown' ||
-        this.props.animationDirection === 'diagonalDownRight'
+        this.props.animationDirection === "horizontalLeft" ||
+        this.props.animationDirection === "horizontalRight" ||
+        this.props.animationDirection === "verticalTop" ||
+        this.props.animationDirection === "verticalDown" ||
+        this.props.animationDirection === "diagonalDownRight"
       ) {
         direction = { x: 0, y: 0 };
-      } else if (this.props.animationDirection === 'diagonalTopLeft') {
+      } else if (this.props.animationDirection === "diagonalTopLeft") {
         direction = { x: 1, y: 1 };
-      } else if (this.props.animationDirection === 'diagonalTopRight') {
+      } else if (this.props.animationDirection === "diagonalTopRight") {
         direction = { x: 0, y: 1 };
-      } else if (this.props.animationDirection === 'diagonalDownLeft') {
+      } else if (this.props.animationDirection === "diagonalDownLeft") {
         direction = { x: 1, y: 0 };
       }
     }
@@ -83,22 +86,22 @@ export default class SkeletonContent extends React.Component<ISkeletonContentPro
 
   getGradientEndDirection = (): IDirection => {
     let direction = { x: 0, y: 0 };
-    if (this.props.animationType === 'shiver') {
+    if (this.props.animationType === "shiver") {
       if (
-        this.props.animationDirection === 'horizontalLeft' ||
-        this.props.animationDirection === 'horizontalRight' ||
-        this.props.animationDirection === 'diagonalTopRight'
+        this.props.animationDirection === "horizontalLeft" ||
+        this.props.animationDirection === "horizontalRight" ||
+        this.props.animationDirection === "diagonalTopRight"
       ) {
         direction = { x: 1, y: 0 };
       } else if (
-        this.props.animationDirection === 'verticalTop' ||
-        this.props.animationDirection === 'verticalDown' ||
-        this.props.animationDirection === 'diagonalDownLeft'
+        this.props.animationDirection === "verticalTop" ||
+        this.props.animationDirection === "verticalDown" ||
+        this.props.animationDirection === "diagonalDownLeft"
       ) {
         direction = { x: 0, y: 1 };
-      } else if (this.props.animationDirection === 'diagonalTopLeft') {
+      } else if (this.props.animationDirection === "diagonalTopLeft") {
         direction = { x: 0, y: 0 };
-      } else if (this.props.animationDirection === 'diagonalDownRight') {
+      } else if (this.props.animationDirection === "diagonalDownRight") {
         direction = { x: 1, y: 1 };
       }
     }
@@ -120,7 +123,7 @@ export default class SkeletonContent extends React.Component<ISkeletonContentPro
   }
 
   playAnimation = () => {
-    if (this.props.animationType === 'pulse') {
+    if (this.props.animationType === "pulse") {
       Animated.loop(
         Animated.sequence([
           Animated.timing(this.animationPulse, {
@@ -154,10 +157,10 @@ export default class SkeletonContent extends React.Component<ISkeletonContentPro
       borderRadius: boneLayout.borderRadius || DEFAULT_BORDER_RADIUS,
       ...boneLayout,
     };
-    if (this.props.animationType === 'pulse') {
+    if (this.props.animationType === "pulse") {
       boneStyle.backgroundColor = this.interpolatedBackgroundColor;
     } else {
-      boneStyle.overflow = 'hidden';
+      boneStyle.overflow = "hidden";
       boneStyle.backgroundColor = boneLayout.backgroundColor || this.props.boneColor;
     }
     return boneStyle;
@@ -169,7 +172,7 @@ export default class SkeletonContent extends React.Component<ISkeletonContentPro
       inputRange: [0, 1],
       outputRange: this.getPositionRange(boneLayout),
     });
-    if (this.props.animationDirection !== 'verticalTop' && this.props.animationDirection !== 'verticalDown') {
+    if (this.props.animationDirection !== "verticalTop" && this.props.animationDirection !== "verticalDown") {
       transform = { translateX: interpolatedPosition };
     } else {
       transform = { translateY: interpolatedPosition };
@@ -183,20 +186,20 @@ export default class SkeletonContent extends React.Component<ISkeletonContentPro
     const boneHeight = boneLayout.height || 0;
 
     if (
-      this.props.animationDirection === 'horizontalRight' ||
-      this.props.animationDirection === 'diagonalDownRight' ||
-      this.props.animationDirection === 'diagonalTopRight'
+      this.props.animationDirection === "horizontalRight" ||
+      this.props.animationDirection === "diagonalDownRight" ||
+      this.props.animationDirection === "diagonalTopRight"
     ) {
       outputRange.push(-boneWidth, +boneWidth);
     } else if (
-      this.props.animationDirection === 'horizontalLeft' ||
-      this.props.animationDirection === 'diagonalDownLeft' ||
-      this.props.animationDirection === 'diagonalTopLeft'
+      this.props.animationDirection === "horizontalLeft" ||
+      this.props.animationDirection === "diagonalDownLeft" ||
+      this.props.animationDirection === "diagonalTopLeft"
     ) {
       outputRange.push(+boneWidth, -boneWidth);
-    } else if (this.props.animationDirection === 'verticalDown') {
+    } else if (this.props.animationDirection === "verticalDown") {
       outputRange.push(-boneHeight, +boneHeight);
-    } else if (this.props.animationDirection === 'verticalTop') {
+    } else if (this.props.animationDirection === "verticalTop") {
       outputRange.push(+boneHeight, -boneHeight);
     }
     return outputRange;
@@ -233,16 +236,16 @@ export default class SkeletonContent extends React.Component<ISkeletonContentPro
         iterator[i] = 0;
       }
       return iterator.map((_, i) => {
-        if (this.props.animationType === 'pulse' || this.props.animationType === 'none') {
+        if (this.props.animationType === "pulse" || this.props.animationType === "none") {
           return this.getStaticBone(layout[i]);
         } else {
           return this.getShiverBone(layout[i]);
         }
       });
     } else {
-      return React.Children.map(children, child => {
+      return React.Children.map(children, (child) => {
         const styling = child.props.style || {};
-        if (this.props.animationType === 'pulse' || this.props.animationType === 'none') {
+        if (this.props.animationType === "pulse" || this.props.animationType === "none") {
           return this.getStaticBone(styling);
         } else {
           return this.getShiverBone(styling);
@@ -252,7 +255,7 @@ export default class SkeletonContent extends React.Component<ISkeletonContentPro
   };
 
   renderLayout = (isLoading: boolean, bones: JSX.Element[], children: any): JSX.Element[] =>
-    isLoading ? bones : children;
+    isLoading ? bones : children
 
   render() {
     const { isLoading, layout } = this.state;

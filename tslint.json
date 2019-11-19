@@ -1,6 +1,5 @@
-{
-  "extends": ["tslint:recommended", "tslint-eslint-rules", "tslint-react", "tslint-config-prettier"],
-  "jsRules": {},
+{ "extends": "tslint:latest",
+  "jsRules": true,
   "rules": {
     "interface-name": false,
     "jsx-no-lambda": false,
