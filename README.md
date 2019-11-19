@@ -30,7 +30,7 @@ import SkeletonContent from "react-native-skeleton-content";
 2.  Once you create the SkeletonContent, you have two options:
 
 - **Child Layout** : The component will figure out the layout of its bones with the dimensions of its direct children (make sure to wrap them in sized-views, with **width** and **height** properties, otherwise, shiver animation might not work).
-- **Custom Layout** : You provide a prop `layout` to the component specifying the size of the bones (see the [Examples](#examples) section below). Herunder is the example with a custom layout.
+- **Custom Layout** : You provide a prop `layout` to the component specifying the size of the bones (see the [Examples](#examples) section below). Herunder is the example with a custom layout. A key is optionnal but highly recommended.
 
 ```javascript
 render () {
@@ -39,8 +39,8 @@ return (
     containerStyle={{flex: 1, width: 300}}
     isLoading={false}
     layout={[
-    { width: 220, height: 20, marginBottom: 6 },
-    { width: 180, height: 20, marginBottom: 6 },
+    { key: "someId", width: 220, height: 20, marginBottom: 6 },
+    { key: "someOtherId", width: 180, height: 20, marginBottom: 6 },
     ]}
     >
 
