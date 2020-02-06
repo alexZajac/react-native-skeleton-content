@@ -63,7 +63,7 @@
     "typescript": "^3.6.4"
   },
   "dependencies": {
-    "expo-linear-gradient": "^7.0.1",
+    "expo-linear-gradient": "^8.0.0",
     "lodash": "^4.17.14"
   }
 }
