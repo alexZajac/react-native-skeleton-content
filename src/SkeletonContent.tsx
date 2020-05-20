@@ -131,11 +131,13 @@ export default class SkeletonContent extends React.Component<ISkeletonContentPro
             duration: this.props.duration! / 2,
             easing: this.props.easing,
             delay: this.props.duration,
+            useNativeDriver: true
           }),
           Animated.timing(this.animationPulse, {
             toValue: 0,
             easing: this.props.easing,
             duration: this.props.duration! / 2,
+            useNativeDriver: true
           }),
         ]),
       ).start();
@@ -145,6 +147,7 @@ export default class SkeletonContent extends React.Component<ISkeletonContentPro
           toValue: 1,
           duration: this.props.duration,
           easing: this.props.easing,
+          useNativeDriver: true
         }),
       ).start();
     }
