@@ -122,6 +122,12 @@ export default class SkeletonContent extends React.Component<ISkeletonContentPro
     this.playAnimation();
   }
 
+  componentDidUpdate() {
+    if(this.props.isLoading) {
+      this.playAnimation();
+    }
+  }
+
   playAnimation = () => {
     if (this.props.animationType === "pulse") {
       Animated.loop(
