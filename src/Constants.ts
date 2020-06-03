@@ -1,4 +1,4 @@
-import { Easing, EasingFunction, ViewStyle } from 'react-native';
+import { Easing, EasingFunction, StyleProp, ViewStyle } from 'react-native';
 
 type animationType = 'none' | 'shiver' | 'pulse';
 type animationDirection =
@@ -17,7 +17,7 @@ export interface ISkeletonContentProps {
   isLoading: boolean;
   layout?: CustomViewStyle[];
   duration?: number;
-  containerStyle?: ViewStyle;
+  containerStyle?: StyleProp<ViewStyle>;
   animationType?: 'none' | 'shiver' | 'pulse';
   animationDirection?:
     | 'horizontalLeft'
