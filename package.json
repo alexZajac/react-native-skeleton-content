@@ -47,13 +47,13 @@
     "jest": "^24.9.0",
     "jest-enzyme": "^7.1.1",
     "jsdom": "^15.2.0",
-    "metro": "^0.56.0",
-    "metro-inspector-proxy": "^0.56.0",
+    "metro": "^0.59.0",
+    "metro-inspector-proxy": "^0.59.0",
     "metro-react-native-babel-preset": "^0.55.0",
     "prettier": "^1.18.2",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
-    "react-native": "^0.61.2",
+    "react-native": "^0.62.2",
     "react-native-unimodules": "^0.7.0-rc.1",
     "ts-jest": "^24.1.0",
     "tslint": "^5.20.0",
@@ -64,6 +64,8 @@
   },
   "dependencies": {
     "expo-linear-gradient": "^8.0.0",
-    "lodash": "^4.17.14"
+    "lodash": "^4.17.14",
+    "react-native-reanimated": "^1.9.0",
+    "react-native-redash": "^14.1.1"
   }
 }
