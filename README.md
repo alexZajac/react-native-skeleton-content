@@ -6,6 +6,11 @@
 
 React native Skeleton Content, a simple yet fully customizable component made to achieve loading animation in a Skeleton-style. Works in both iOS and Android.
 
+### New Features 
+- The package has been rewritten to Hooks and is using the declarative [react-native-reanimated](https://github.com/software-mansion/react-native-reanimated) package for animations
+- It now supports nested layouts for children bones, see an example on [this snack](https://snack.expo.io/@alexandrezajac/skeleton-content-demo)
+- It finally supports percentages dimensions for bones, for any type of animation! 
+
 [![npm version](https://img.shields.io/npm/v/react-native-skeleton-content.svg?style=flat-square)](https://www.npmjs.com/package/react-native-skeleton-content)
 
 - [React Native Skeleton Content](#react-native-skeleton-content)
@@ -29,8 +34,8 @@ import SkeletonContent from "react-native-skeleton-content";
 
 2.  Once you create the SkeletonContent, you have two options:
 
-- **Child Layout** : The component will figure out the layout of its bones with the dimensions of its direct children (make sure to wrap them in sized-views, with **width** and **height** properties, otherwise, shiver animation might not work).
-- **Custom Layout** : You provide a prop `layout` to the component specifying the size of the bones (see the [Examples](#examples) section below). Herunder is the example with a custom layout. A key is optionnal but highly recommended.
+- **Child Layout** : The component will figure out the layout of its bones with the dimensions of its direct children.
+- **Custom Layout** : You provide a prop `layout` to the component specifying the size of the bones (see the [Examples](#examples) section below). Herunder is the example with a custom layout. A key prop for each child is optionnal but highly recommended.
 
 ```javascript
 render () {
@@ -85,6 +90,8 @@ render () {
 | animationDirection | string           | "horizontalRight"       | Used only for shiver animation, describes the direction and end-point (ex: horizontalRight goes on the x-axis from left to right) |
 | boneColor          | string           | "#E1E9EE"               | Color of the bones                                                                                                                |
 | highlightColor     | string           | "#F2F8FC"               | Color of the highlight of the bones                                                                                               |
+
+**Note**: The Easing type function is the one provided by [react-native-reanimated](https://github.com/software-mansion/react-native-reanimated), so if you want to change the default you will have to install it as a dependency.
 
 ### Examples
 
