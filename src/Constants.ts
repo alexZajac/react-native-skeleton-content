@@ -21,14 +21,14 @@ export interface ISkeletonContentProps {
   containerStyle?: StyleProp<ViewStyle>;
   animationType?: 'none' | 'shiver' | 'pulse';
   animationDirection?:
-  | 'horizontalLeft'
-  | 'horizontalRight'
-  | 'verticalTop'
-  | 'verticalDown'
-  | 'diagonalDownLeft'
-  | 'diagonalDownRight'
-  | 'diagonalTopLeft'
-  | 'diagonalTopRight';
+    | 'horizontalLeft'
+    | 'horizontalRight'
+    | 'verticalTop'
+    | 'verticalDown'
+    | 'diagonalDownLeft'
+    | 'diagonalDownRight'
+    | 'diagonalTopLeft'
+    | 'diagonalTopRight';
   boneColor?: string;
   intensity?: number;
   highlightColor?: string;
