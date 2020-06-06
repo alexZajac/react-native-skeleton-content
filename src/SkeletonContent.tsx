@@ -11,7 +11,6 @@ import {
   DEFAULT_EASING,
   DEFAULT_DURATION,
   DEFAULT_HIGHLIGHT_COLOR,
-  DEFAULT_INTENSITY,
   DEFAULT_LOADING,
   ISkeletonContentProps,
   IDirection,
@@ -58,7 +57,6 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
   animationDirection,
   animationType,
   easing,
-  intensity,
   children
 }) => {
 
@@ -278,8 +276,7 @@ SkeletonContent.defaultProps = {
   animationDirection: DEFAULT_ANIMATION_DIRECTION,
   isLoading: DEFAULT_LOADING,
   boneColor: DEFAULT_BONE_COLOR,
-  highlightColor: DEFAULT_HIGHLIGHT_COLOR,
-  intensity: DEFAULT_INTENSITY
+  highlightColor: DEFAULT_HIGHLIGHT_COLOR
 }
 
 export default SkeletonContent;
