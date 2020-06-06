@@ -1,5 +1,5 @@
 import { StyleProp, ViewStyle } from 'react-native';
-import { Easing } from "react-native-reanimated";
+import { Easing } from 'react-native-reanimated';
 
 type animationType = 'none' | 'shiver' | 'pulse';
 type animationDirection =
@@ -25,14 +25,14 @@ export interface ISkeletonContentProps {
   containerStyle?: StyleProp<ViewStyle>;
   animationType?: 'none' | 'shiver' | 'pulse';
   animationDirection?:
-  | 'horizontalLeft'
-  | 'horizontalRight'
-  | 'verticalTop'
-  | 'verticalDown'
-  | 'diagonalDownLeft'
-  | 'diagonalDownRight'
-  | 'diagonalTopLeft'
-  | 'diagonalTopRight';
+    | 'horizontalLeft'
+    | 'horizontalRight'
+    | 'verticalTop'
+    | 'verticalDown'
+    | 'diagonalDownLeft'
+    | 'diagonalDownRight'
+    | 'diagonalTopLeft'
+    | 'diagonalTopRight';
   boneColor?: string;
   intensity?: number;
   highlightColor?: string;
