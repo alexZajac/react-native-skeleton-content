@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import * as React from "react";
 import { StyleSheet, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Animated from "react-native-reanimated";
@@ -15,11 +15,11 @@ import {
   DEFAULT_LOADING,
   ISkeletonContentProps,
   IDirection,
-  ILayout,
   CustomViewStyle,
 } from "./Constants";
 
 const { Value, useCode, set, cond, eq } = Animated;
+const { useState, useCallback } = React;
 
 const styles = StyleSheet.create({
   absoluteGradient: {

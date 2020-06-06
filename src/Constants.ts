@@ -13,10 +13,6 @@ type animationDirection =
   | 'diagonalTopRight';
 
 export type CustomViewStyle = any;
-export interface ILayout {
-  width?: number | string;
-  height?: number | string;
-}
 
 export interface ISkeletonContentProps {
   isLoading: boolean;
@@ -25,14 +21,14 @@ export interface ISkeletonContentProps {
   containerStyle?: StyleProp<ViewStyle>;
   animationType?: 'none' | 'shiver' | 'pulse';
   animationDirection?:
-    | 'horizontalLeft'
-    | 'horizontalRight'
-    | 'verticalTop'
-    | 'verticalDown'
-    | 'diagonalDownLeft'
-    | 'diagonalDownRight'
-    | 'diagonalTopLeft'
-    | 'diagonalTopRight';
+  | 'horizontalLeft'
+  | 'horizontalRight'
+  | 'verticalTop'
+  | 'verticalDown'
+  | 'diagonalDownLeft'
+  | 'diagonalDownRight'
+  | 'diagonalTopLeft'
+  | 'diagonalTopRight';
   boneColor?: string;
   intensity?: number;
   highlightColor?: string;
