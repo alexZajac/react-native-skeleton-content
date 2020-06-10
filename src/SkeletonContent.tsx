@@ -1,7 +1,7 @@
 import * as React from "react";
 import { StyleSheet, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import Animated from "react-native-reanimated";
+import Animated, { interpolate } from "react-native-reanimated";
 import { interpolateColor, loop } from "react-native-redash";
 import {
   DEFAULT_ANIMATION_TYPE,
@@ -156,7 +156,7 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
 
   const getGradientTransform = (boneLayout: CustomViewStyle): object => {
     let transform = {};
-    const interpolatedPosition = animationValue.interpolate({
+    const interpolatedPosition = interpolate(animationValue, {
       inputRange: [0, 1],
       outputRange: getPositionRange(boneLayout),
     });
@@ -212,7 +212,7 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
 
   const getShiverBone = (layoutStyle: CustomViewStyle, key: number | string): JSX.Element => {
     const animatedStyle: any = { transform: [getGradientTransform(layoutStyle)] };
-    return (<View key={layoutStyle.key || key} style={[getBoneStyles(layoutStyle), { overflow: "hidden" }]}>
+    return (<View key={layoutStyle.key || key} style={getBoneStyles(layoutStyle)}>
       <Animated.View
         style={[
           styles.absoluteGradient,
@@ -237,7 +237,8 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
         // has a nested layout
         if (layout[i].children && layout[i].children.length > 0) {
           const containerPrefix = layout[i].key || `bone_container_${i}`;
-          return getBoneContainer(layout[i], getBones(layout[i].children, [], containerPrefix), containerPrefix);
+          const { children, ...layoutStyle } = layout[i];
+          return getBoneContainer(layoutStyle, getBones(layout[i].children, [], containerPrefix), containerPrefix);
         } else {
           if (
             animationType === "pulse" ||
@@ -252,7 +253,7 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
       // no mayout, matching children's layout
     } else {
       return React.Children.map(children, (child, i) => {
-        const styling = child.style || {};
+        const styling = child.props.style || {};
         if (animationType === "pulse" || animationType === "none") {
           return getStaticBone(styling, i);
         } else {
