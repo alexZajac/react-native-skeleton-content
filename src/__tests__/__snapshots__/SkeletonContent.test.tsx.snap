@@ -191,171 +191,39 @@ exports[`SkeletonComponent test suite should render the correct bones for childr
   <View
     style={
       Object {
-        "backgroundColor": "#E1E9EE",
+        "backgroundColor": AnimatedValue {
+          " __value": NaN,
+        },
         "borderRadius": 4,
         "height": 100,
-        "overflow": "hidden",
         "width": 200,
       }
     }
-  >
-    <View
-      style={
-        Array [
-          Object {
-            "height": "100%",
-            "position": "absolute",
-            "width": "100%",
-          },
-          Object {
-            "transform": Array [
-              Object {
-                "translateX": undefined,
-              },
-            ],
-          },
-        ]
-      }
-    >
-      <ViewManagerAdapter_ExpoLinearGradient
-        proxiedProperties={
-          Object {
-            "colors": Array [
-              4292995566,
-              4294113532,
-              4292995566,
-            ],
-            "endPoint": Array [
-              1,
-              0,
-            ],
-            "locations": undefined,
-            "startPoint": Array [
-              0,
-              0,
-            ],
-          }
-        }
-        style={
-          Object {
-            "flex": 1,
-          }
-        }
-      />
-    </View>
-  </View>
+  />
   <View
     style={
       Object {
-        "backgroundColor": "#E1E9EE",
+        "backgroundColor": AnimatedValue {
+          " __value": NaN,
+        },
         "borderRadius": 4,
         "height": 120,
-        "overflow": "hidden",
         "width": 20,
       }
     }
-  >
-    <View
-      style={
-        Array [
-          Object {
-            "height": "100%",
-            "position": "absolute",
-            "width": "100%",
-          },
-          Object {
-            "transform": Array [
-              Object {
-                "translateX": undefined,
-              },
-            ],
-          },
-        ]
-      }
-    >
-      <ViewManagerAdapter_ExpoLinearGradient
-        proxiedProperties={
-          Object {
-            "colors": Array [
-              4292995566,
-              4294113532,
-              4292995566,
-            ],
-            "endPoint": Array [
-              1,
-              0,
-            ],
-            "locations": undefined,
-            "startPoint": Array [
-              0,
-              0,
-            ],
-          }
-        }
-        style={
-          Object {
-            "flex": 1,
-          }
-        }
-      />
-    </View>
-  </View>
+  />
   <View
     style={
       Object {
-        "backgroundColor": "#E1E9EE",
+        "backgroundColor": AnimatedValue {
+          " __value": NaN,
+        },
         "borderRadius": 4,
         "height": 80,
-        "overflow": "hidden",
         "width": 240,
       }
     }
-  >
-    <View
-      style={
-        Array [
-          Object {
-            "height": "100%",
-            "position": "absolute",
-            "width": "100%",
-          },
-          Object {
-            "transform": Array [
-              Object {
-                "translateX": undefined,
-              },
-            ],
-          },
-        ]
-      }
-    >
-      <ViewManagerAdapter_ExpoLinearGradient
-        proxiedProperties={
-          Object {
-            "colors": Array [
-              4292995566,
-              4294113532,
-              4292995566,
-            ],
-            "endPoint": Array [
-              1,
-              0,
-            ],
-            "locations": undefined,
-            "startPoint": Array [
-              0,
-              0,
-            ],
-          }
-        }
-        style={
-          Object {
-            "flex": 1,
-          }
-        }
-      />
-    </View>
-  </View>
+  />
 </View>
 `;
 
