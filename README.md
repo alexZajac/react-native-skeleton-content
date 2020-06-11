@@ -6,10 +6,11 @@
 
 React native Skeleton Content, a simple yet fully customizable component made to achieve loading animation in a Skeleton-style. Works in both iOS and Android.
 
-### New Features 
+### New Features
+
 - The package has been rewritten to Hooks and is using the declarative [react-native-reanimated](https://github.com/software-mansion/react-native-reanimated) package for animations
 - It now supports nested layouts for children bones, see an example on [this snack](https://snack.expo.io/@alexandrezajac/skeleton-content-demo)
-- It finally supports percentages dimensions for bones, for any type of animation! 
+- It finally supports percentages dimensions for bones, for any type of animation!
 
 [![npm version](https://img.shields.io/npm/v/react-native-skeleton-content.svg?style=flat-square)](https://www.npmjs.com/package/react-native-skeleton-content)
 
@@ -29,7 +30,7 @@ React native Skeleton Content, a simple yet fully customizable component made to
 1.  Import react-native-skeleton-content:
 
 ```javascript
-import SkeletonContent from "react-native-skeleton-content";
+import SkeletonContent from 'react-native-skeleton-content'
 ```
 
 2.  Once you create the SkeletonContent, you have two options:
@@ -37,43 +38,36 @@ import SkeletonContent from "react-native-skeleton-content";
 - **Child Layout** : The component will figure out the layout of its bones with the dimensions of its direct children.
 - **Custom Layout** : You provide a prop `layout` to the component specifying the size of the bones (see the [Examples](#examples) section below). Herunder is the example with a custom layout. A key prop for each child is optionnal but highly recommended.
 
-```javascript
-render () {
-return (
-<SkeletonContent
-    containerStyle={{flex: 1, width: 300}}
-    isLoading={false}
-    layout={[
-    { key: "someId", width: 220, height: 20, marginBottom: 6 },
-    { key: "someOtherId", width: 180, height: 20, marginBottom: 6 },
-    ]}
+```jsx
+export default function Placehoder() {
+  return (
+    <SkeletonContent
+      containerStyle={{ flex: 1, width: 300 }}
+      isLoading={false}
+      layout={[
+        { key: 'someId', width: 220, height: 20, marginBottom: 6 },
+        { key: 'someOtherId', width: 180, height: 20, marginBottom: 6 }
+      ]}
     >
-
-    <Text style={styles.normalText}>
-        Your content
-    </Text>
-
-    <Text style={styles.bigText}>
-        Other content
-    </Text>
-
-</SkeletonContent>
-)
+      <Text style={styles.normalText}>Your content</Text>
+      <Text style={styles.bigText}>Other content</Text>
+    </SkeletonContent>
+  )
 }
 ```
 
 3.  Then simply sync the prop `isLoading` to your state to show/hide the SkeletonContent when the assets/data are available to the user.
 
-```javascript
-render () {
-    const { isLoading } = this.state;
-    return (
+```jsx
+export default function Placehoder () {
+  const [loading, setLoading] = useState(true);
+  return (
     <SkeletonContent
-        containerStyle={{flex: 1, width: 300}}
+       containerStyle={{flex: 1, width: 300}}
         isLoading={isLoading}>
-        ...
+        {...otherProps}
     />
-)
+  )
 }
 ```
 
@@ -103,15 +97,15 @@ See the playground section to experiment :
 </p>
 
 ```javascript
-render () {
-    return (
+export default function Placehoder () {
+  return (
     <SkeletonContent
         containerStyle={{flex: 1, width: 300}}
         animationDirection="horizontalLeft"
         isLoading={true}>
         ...
     />
-    )
+  )
 }
 ```
 
@@ -121,9 +115,9 @@ render () {
 <img width="300px" src="https://raw.githubusercontent.com/alexZajac/react-native-skeleton-content/master/demos/color_change.gif" />
 </p>
 
-```javascript
-render () {
-    return (
+```jsx
+export default function Placehoder () {
+  return (
     <SkeletonContent
         containerStyle={{flex: 1, width: 300}}
         boneColor="#121212"
@@ -132,7 +126,7 @@ render () {
         isLoading={true}>
         ...
     />
-    )
+  )
 }
 ```
 
@@ -142,9 +136,9 @@ render () {
 <img width="300px" src="https://raw.githubusercontent.com/alexZajac/react-native-skeleton-content/master/demos/layout_change.gif" />
 </p>
 
-```javascript
-render () {
-    return (
+```jsx
+export default function Placehoder () {
+  return (
     <SkeletonContent
         containerStyle={{flex: 1, width: 300}}
         animationDirection="horizontalLeft"
@@ -158,7 +152,7 @@ render () {
         isLoading={true}>
         ...
     />
-    )
+  )
 }
 ```
 
