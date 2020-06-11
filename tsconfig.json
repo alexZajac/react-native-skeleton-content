@@ -1,4 +1,3 @@
-  
 {
   "compilerOptions": {
     "target": "es6",
@@ -14,5 +13,10 @@
     "esModuleInterop": true
   },
   "include": ["./src"],
-  "exclude": ["./node_modules", "**/__tests__/*"]
+  "exclude": [
+    "**/node_modules/**",
+    "**/lib/**",
+    "**/coverage/**",
+    "**/demos/**"
+  ]
 }

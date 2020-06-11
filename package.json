@@ -16,12 +16,16 @@
     "lib/**/*"
   ],
   "scripts": {
-    "build": "tsc -p .",
-    "test": "jest --no-watchman",
-    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "build": "tsc -p tsconfig.json",
+    "format": "prettier --write src/**/*.{js,jsx,ts,tsx}",
+    "lint": "eslint --fix src/**/*.{js,jsx,ts,tsx}",
     "prepare": "npm run build",
+    "prepublishOnly": "npm run lint && npm run test",
+    "preversion": "npm run lint",
     "version": "npm run format && git add -A src",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push && git push --tags",
+    "test": "jest --no-watchman",
+    "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls"
   },
   "jest": {
     "preset": "jest-expo",
@@ -64,6 +68,8 @@
     "@unimodules/react-native-adapter": "^5.2.0",
     "babel-preset-expo": "^8.2.1",
     "coveralls": "^3.0.7",
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb-typescript-prettier": "^2.1.1",
     "jest": "^24.9.0",
     "jest-expo": "^37.0.0",
     "prettier": "^1.18.2",
@@ -71,10 +77,6 @@
     "react-native": "^0.62.2",
     "react-native-unimodules": "^0.7.0-rc.1",
     "react-test-renderer": "^16.13.1",
-    "tslint": "^5.20.0",
-    "tslint-config-prettier": "^1.18.0",
-    "tslint-eslint-rules": "^5.4.0",
-    "tslint-react": "^4.1.0",
     "typescript": "^3.6.4"
   },
   "dependencies": {
