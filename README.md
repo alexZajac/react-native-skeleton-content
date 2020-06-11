@@ -12,6 +12,8 @@ React native Skeleton Content, a simple yet fully customizable component made to
 - It now supports nested layouts for children bones, see an example on [this snack](https://snack.expo.io/@alexandrezajac/skeleton-content-demo)
 - It finally supports percentages dimensions for bones, for any type of animation!
 
+[![Build Status](https://travis-ci.org/alexZajac/react-native-skeleton-content.svg?branch=master)](https://travis-ci.org/alexZajac/react-native-skeleton-content)
+[![Coverage Status](https://coveralls.io/repos/github/alexZajac/react-native-skeleton-content/badge.svg?branch=master)](https://coveralls.io/github/alexZajac/react-native-skeleton-content?branch=master)
 [![npm version](https://img.shields.io/npm/v/react-native-skeleton-content.svg?style=flat-square)](https://www.npmjs.com/package/react-native-skeleton-content)
 
 - [React Native Skeleton Content](#react-native-skeleton-content)
@@ -30,7 +32,7 @@ React native Skeleton Content, a simple yet fully customizable component made to
 1.  Import react-native-skeleton-content:
 
 ```javascript
-import SkeletonContent from 'react-native-skeleton-content'
+import SkeletonContent from 'react-native-skeleton-content';
 ```
 
 2.  Once you create the SkeletonContent, you have two options:
@@ -52,7 +54,7 @@ export default function Placehoder() {
       <Text style={styles.normalText}>Your content</Text>
       <Text style={styles.bigText}>Other content</Text>
     </SkeletonContent>
-  )
+  );
 }
 ```
 
