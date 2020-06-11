@@ -220,7 +220,7 @@ describe('SkeletonComponent test suite', () => {
   });
 
   it('should support nested layouts', () => {
-    const layout = [
+    const layout: any = [
       {
         flexDirection: 'row',
         width: 320,
