@@ -140,25 +140,29 @@ exports[`SkeletonComponent test suite should have the correct layout when loadin
 >
   <View
     style={
-      Object {
-        "backgroundColor": "#E1E9EE",
-        "borderRadius": 4,
-        "height": 100,
-        "marginBottom": 10,
-        "overflow": "hidden",
-        "width": 240,
-      }
+      Array [
+        Object {
+          "backgroundColor": "#E1E9EE",
+          "borderRadius": 4,
+          "height": 100,
+          "marginBottom": 10,
+          "overflow": "hidden",
+          "width": 240,
+        },
+      ]
     }
   />
   <View
     style={
-      Object {
-        "backgroundColor": "grey",
-        "borderRadius": 20,
-        "height": 40,
-        "overflow": "hidden",
-        "width": 180,
-      }
+      Array [
+        Object {
+          "backgroundColor": "grey",
+          "borderRadius": 20,
+          "height": 40,
+          "overflow": "hidden",
+          "width": 180,
+        },
+      ]
     }
   />
 </View>
@@ -190,38 +194,50 @@ exports[`SkeletonComponent test suite should render the correct bones for childr
 >
   <View
     style={
-      Object {
-        "backgroundColor": AnimatedValue {
-          " __value": NaN,
+      Array [
+        Object {
+          "borderRadius": 4,
+          "height": 100,
+          "width": 200,
         },
-        "borderRadius": 4,
-        "height": 100,
-        "width": 200,
-      }
+        Object {
+          "backgroundColor": AnimatedValue {
+            " __value": NaN,
+          },
+        },
+      ]
     }
   />
   <View
     style={
-      Object {
-        "backgroundColor": AnimatedValue {
-          " __value": NaN,
+      Array [
+        Object {
+          "borderRadius": 4,
+          "height": 120,
+          "width": 20,
         },
-        "borderRadius": 4,
-        "height": 120,
-        "width": 20,
-      }
+        Object {
+          "backgroundColor": AnimatedValue {
+            " __value": NaN,
+          },
+        },
+      ]
     }
   />
   <View
     style={
-      Object {
-        "backgroundColor": AnimatedValue {
-          " __value": NaN,
+      Array [
+        Object {
+          "borderRadius": 4,
+          "height": 80,
+          "width": 240,
         },
-        "borderRadius": 4,
-        "height": 80,
-        "width": 240,
-      }
+        Object {
+          "backgroundColor": AnimatedValue {
+            " __value": NaN,
+          },
+        },
+      ]
     }
   />
 </View>
