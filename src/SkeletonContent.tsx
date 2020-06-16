@@ -153,13 +153,22 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
       borderRadius: boneLayout.borderRadius || DEFAULT_BORDER_RADIUS,
       ...boneLayout
     };
-    if (animationType === 'pulse') {
-      boneStyle.backgroundColor = interpolatedBackgroundColor;
-    } else {
+    if (animationType !== 'pulse') {
       boneStyle.overflow = 'hidden';
       boneStyle.backgroundColor = boneLayout.backgroundColor || boneColor;
     }
     return boneStyle;
+  };
+
+  const getStaticBoneStyles = (
+    boneLayout: ICustomViewStyle
+  ): (ICustomViewStyle | { backgroundColor: any })[] => {
+    const pulseStyles = [
+      getBoneStyles(boneLayout),
+      { backgroundColor: interpolatedBackgroundColor }
+    ];
+    if (animationType === 'none') pulseStyles.pop();
+    return pulseStyles;
   };
 
   const getPositionRange = (boneLayout: ICustomViewStyle): number[] => {
@@ -214,7 +223,7 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
   const getBoneContainer = (
     layoutStyle: ICustomViewStyle,
     childrenBones: JSX.Element[],
-    key: string
+    key: number | string
   ) => (
     <View key={layoutStyle.key || key} style={layoutStyle}>
       {childrenBones}
@@ -227,7 +236,7 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
   ): JSX.Element => (
     <Animated.View
       key={layoutStyle.key || key}
-      style={getBoneStyles(layoutStyle)}
+      style={getStaticBoneStyles(layoutStyle)}
     />
   );
 
@@ -253,15 +262,15 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
   };
 
   const getBones = (
-    bonesLayout: ICustomViewStyle[],
+    bonesLayout: ICustomViewStyle[] | undefined,
     childrenItems: any,
-    prefix = ''
+    prefix: string | number = ''
   ): JSX.Element[] => {
-    if (bonesLayout.length > 0) {
+    if (bonesLayout && bonesLayout.length > 0) {
       const iterator: number[] = new Array(bonesLayout.length).fill(0);
       return iterator.map((_, i) => {
         // has a nested layout
-        if (bonesLayout[i].children && bonesLayout[i].children.length > 0) {
+        if (bonesLayout[i].children && bonesLayout[i].children!.length > 0) {
           const containerPrefix = bonesLayout[i].key || `bone_container_${i}`;
           const { children: childBones, ...layoutStyle } = bonesLayout[i];
           return getBoneContainer(

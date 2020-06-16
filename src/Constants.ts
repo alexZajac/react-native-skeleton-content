@@ -1,5 +1,5 @@
 import { StyleProp, ViewStyle } from 'react-native';
-import { Easing } from 'react-native-reanimated';
+import Animated, { Easing } from 'react-native-reanimated';
 
 type animationType = 'none' | 'shiver' | 'pulse';
 type animationDirection =
@@ -12,7 +12,10 @@ type animationDirection =
   | 'diagonalTopLeft'
   | 'diagonalTopRight';
 
-export type ICustomViewStyle = any;
+export interface ICustomViewStyle extends ViewStyle {
+  children?: ICustomViewStyle[];
+  key?: number | string;
+}
 
 export interface ISkeletonContentProps {
   isLoading: boolean;
@@ -31,7 +34,7 @@ export interface ISkeletonContentProps {
     | 'diagonalTopRight';
   boneColor?: string;
   highlightColor?: string;
-  easing?: any;
+  easing?: Animated.EasingFunction;
 }
 
 export interface IDirection {
@@ -46,5 +49,10 @@ export const DEFAULT_ANIMATION_DIRECTION: animationDirection =
   'horizontalRight';
 export const DEFAULT_BONE_COLOR = '#E1E9EE';
 export const DEFAULT_HIGHLIGHT_COLOR = '#F2F8FC';
-export const DEFAULT_EASING: any = Easing.bezier(0.5, 0, 0.25, 1);
+export const DEFAULT_EASING: Animated.EasingFunction = Easing.bezier(
+  0.5,
+  0,
+  0.25,
+  1
+);
 export const DEFAULT_LOADING = true;
