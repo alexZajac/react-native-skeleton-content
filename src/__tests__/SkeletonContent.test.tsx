@@ -7,13 +7,8 @@ import { create } from 'react-test-renderer';
 import SkeletonContent from '../SkeletonContent';
 import {
   ISkeletonContentProps,
-  DEFAULT_ANIMATION_TYPE,
-  DEFAULT_ANIMATION_DIRECTION,
   DEFAULT_BONE_COLOR,
-  DEFAULT_EASING,
-  DEFAULT_DURATION,
   DEFAULT_HIGHLIGHT_COLOR,
-  DEFAULT_LOADING,
   DEFAULT_BORDER_RADIUS
 } from '../Constants';
 
@@ -27,20 +22,6 @@ describe('SkeletonComponent test suite', () => {
   it('should render empty alone', () => {
     const tree = create(<SkeletonContent isLoading={false} />).toJSON();
     expect(tree).toMatchSnapshot();
-  });
-
-  it('should have default props', () => {
-    const component = create(<SkeletonContent isLoading />).root;
-    expect(component.props.easing).toEqual(DEFAULT_EASING);
-    expect(component.props.layout).toEqual([]);
-    expect(component.props.animationDirection).toEqual(
-      DEFAULT_ANIMATION_DIRECTION
-    );
-    expect(component.props.animationType).toEqual(DEFAULT_ANIMATION_TYPE);
-    expect(component.props.boneColor).toEqual(DEFAULT_BONE_COLOR);
-    expect(component.props.duration).toEqual(DEFAULT_DURATION);
-    expect(component.props.highlightColor).toEqual(DEFAULT_HIGHLIGHT_COLOR);
-    expect(component.props.isLoading).toEqual(DEFAULT_LOADING);
   });
 
   it('should have the correct layout when loading', () => {
