@@ -305,7 +305,7 @@ describe('SkeletonComponent test suite', () => {
   });
 
   it('should have the correct gradient properties', () => {
-    const customProps: ISkeletonContentProps = {
+    let customProps: ISkeletonContentProps = {
       layout: [
         {
           width: 240,
@@ -324,41 +324,29 @@ describe('SkeletonComponent test suite', () => {
     const component = create(<TestComponent {...customProps} />);
     let gradient = component.root.findByType(LinearGradient);
     expect(gradient).toBeDefined();
-    expect(gradient.props.start).toEqual({ x: 1, y: 0 });
+    expect(gradient.props.start).toEqual({ x: 0, y: 0 });
     expect(gradient.props.end).toEqual({ x: 0, y: 1 });
 
+    // change layout on diagonal component
+    customProps = {
+      ...customProps,
+      layout: [
+        {
+          width: 240,
+          height: 300
+        }
+      ]
+    };
     component.update(
-      <SkeletonContent {...customProps} animationDirection="diagonalTopLeft">
-        <Text style={{ fontSize: 24 }} />
-      </SkeletonContent>
-    );
-
-    gradient = component.root.findByType(LinearGradient);
-    expect(gradient).toBeDefined();
-    expect(gradient.props.start).toEqual({ x: 1, y: 1 });
-    expect(gradient.props.end).toEqual({ x: 0, y: 0 });
-
-    component.update(
-      <SkeletonContent {...customProps} animationDirection="diagonalTopRight">
-        <Text style={{ fontSize: 24 }} />
-      </SkeletonContent>
-    );
-
-    gradient = component.root.findByType(LinearGradient);
-    expect(gradient).toBeDefined();
-    expect(gradient.props.start).toEqual({ x: 0, y: 1 });
-    expect(gradient.props.end).toEqual({ x: 1, y: 0 });
-
-    component.update(
-      <SkeletonContent {...customProps} animationDirection="diagonalDownRight">
-        <Text style={{ fontSize: 24 }} />
+      <SkeletonContent {...customProps} animationDirection="diagonalDownLeft">
+        <Animated.View style={{ height: 300, width: 200 }} />
       </SkeletonContent>
     );
 
     gradient = component.root.findByType(LinearGradient);
     expect(gradient).toBeDefined();
     expect(gradient.props.start).toEqual({ x: 0, y: 0 });
-    expect(gradient.props.end).toEqual({ x: 1, y: 1 });
+    expect(gradient.props.end).toEqual({ x: 1, y: 0 });
 
     component.update(
       <SkeletonContent {...customProps} animationDirection="verticalTop">
@@ -381,6 +369,28 @@ describe('SkeletonComponent test suite', () => {
     expect(gradient).toBeDefined();
     expect(gradient.props.start).toEqual({ x: 0, y: 0 });
     expect(gradient.props.end).toEqual({ x: 0, y: 1 });
+
+    component.update(
+      <SkeletonContent {...customProps} animationDirection="horizontalLeft">
+        <Text style={{ fontSize: 24 }} />
+      </SkeletonContent>
+    );
+
+    gradient = component.root.findByType(LinearGradient);
+    expect(gradient).toBeDefined();
+    expect(gradient.props.start).toEqual({ x: 0, y: 0 });
+    expect(gradient.props.end).toEqual({ x: 1, y: 0 });
+
+    component.update(
+      <SkeletonContent {...customProps} animationDirection="horizontalRight">
+        <Text style={{ fontSize: 24 }} />
+      </SkeletonContent>
+    );
+
+    gradient = component.root.findByType(LinearGradient);
+    expect(gradient).toBeDefined();
+    expect(gradient.props.start).toEqual({ x: 0, y: 0 });
+    expect(gradient.props.end).toEqual({ x: 1, y: 0 });
 
     expect(gradient.props.colors).toEqual([
       DEFAULT_BONE_COLOR,
