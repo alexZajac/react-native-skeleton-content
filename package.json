@@ -77,11 +77,11 @@
     "react-native": "^0.62.2",
     "react-native-unimodules": "^0.7.0-rc.1",
     "react-test-renderer": "^16.13.1",
-    "typescript": "^3.6.4"
+    "typescript": "^3.6.4",
+    "react-native-gesture-handler": "^1.6.1"
   },
   "dependencies": {
     "expo-linear-gradient": "^8.0.0",
-    "react-native-gesture-handler": "^1.6.1",
     "react-native-reanimated": "^1.9.0",
     "react-native-redash": "^14.1.1"
   }
