@@ -82,7 +82,7 @@
   },
   "dependencies": {
     "expo-linear-gradient": "^8.0.0",
-    "react-native-reanimated": "^1.9.0",
+    "react-native-reanimated": "1.9.0",
     "react-native-redash": "^14.1.1"
   }
 }
