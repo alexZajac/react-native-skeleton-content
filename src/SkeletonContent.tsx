@@ -66,6 +66,8 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
       setTimeout(() => {
         setLoadingTemp(false)
       }, delay)
+    }else{
+      setLoadingTemp(true)
     }
   }, [isLoading])
 
