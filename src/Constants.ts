@@ -29,6 +29,8 @@ export interface ISkeletonContentProps {
   highlightColor?: string;
   easing?: Animated.EasingFunction;
   children?: any;
+  delay?: number
+
 }
 
 export interface IDirection {
@@ -50,3 +52,4 @@ export const DEFAULT_EASING: Animated.EasingFunction = Easing.bezier(
   1
 );
 export const DEFAULT_LOADING = true;
+export const DEFAULT_DELAY = 1000;

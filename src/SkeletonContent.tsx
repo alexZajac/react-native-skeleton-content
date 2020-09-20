@@ -14,7 +14,8 @@ import {
   DEFAULT_HIGHLIGHT_COLOR,
   DEFAULT_LOADING,
   ISkeletonContentProps,
-  IDirection
+  IDirection,
+  DEFAULT_DELAY
 } from './Constants';
 
 const { useCode, set, cond, eq } = Animated;
@@ -57,10 +58,20 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
   isLoading = DEFAULT_LOADING,
   boneColor = DEFAULT_BONE_COLOR,
   highlightColor = DEFAULT_HIGHLIGHT_COLOR,
-  children
+  children,
+  delay = DEFAULT_DELAY
 }) => {
+  React.useEffect(() => {
+    if (!isLoading) {
+      setTimeout(() => {
+        setLoadingTemp(false)
+      }, delay)
+    }
+  }, [isLoading])
+
   const animationValue = useValue(0);
   const loadingValue = useValue(isLoading ? 1 : 0);
+  const [loadingTemp, setLoadingTemp] = useState(isLoading)
   const shiverValue = useValue(animationType === 'shiver' ? 1 : 0);
 
   const [componentSize, onLayout] = useLayout();
@@ -249,12 +260,12 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
       const diagonalAngle = Math.acos(mainDimension / diagonal);
       let rotateAngle =
         animationDirection === 'diagonalDownRight' ||
-        animationDirection === 'diagonalTopLeft'
+          animationDirection === 'diagonalTopLeft'
           ? Math.PI / 2 - diagonalAngle
           : Math.PI / 2 + diagonalAngle;
       const additionalRotate =
         animationDirection === 'diagonalDownRight' ||
-        animationDirection === 'diagonalTopLeft'
+          animationDirection === 'diagonalTopLeft'
           ? 2 * diagonalAngle
           : -2 * diagonalAngle;
       const distanceFactor = (diagonal + oppositeDimension) / 2;
@@ -312,20 +323,20 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
     childrenBones: JSX.Element[],
     key: number | string
   ) => (
-    <View key={layoutStyle.key || key} style={layoutStyle}>
-      {childrenBones}
-    </View>
-  );
+      <View key={layoutStyle.key || key} style={layoutStyle}>
+        {childrenBones}
+      </View>
+    );
 
   const getStaticBone = (
     layoutStyle: ICustomViewStyle,
     key: number | string
   ): JSX.Element => (
-    <Animated.View
-      key={layoutStyle.key || key}
-      style={getStaticBoneStyles(layoutStyle)}
-    />
-  );
+      <Animated.View
+        key={layoutStyle.key || key}
+        style={getStaticBoneStyles(layoutStyle)}
+      />
+    );
 
   const getShiverBone = (
     layoutStyle: ICustomViewStyle,
@@ -382,12 +393,15 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
       return getShiverBone(styling, i);
     });
   };
+  const skeletonMemo = React.useMemo(() => {
+    return (
+      <View style={containerStyle} onLayout={onLayout}>
+        {loadingTemp ? getBones(layout!, children) : children}
+      </View>
+    )
+  }, [loadingTemp])
 
-  return (
-    <View style={containerStyle} onLayout={onLayout}>
-      {isLoading ? getBones(layout!, children) : children}
-    </View>
-  );
+  return skeletonMemo;
 };
 
 export default React.memo(SkeletonContent);
