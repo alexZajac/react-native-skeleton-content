@@ -1,21 +1,21 @@
+import { LinearGradient } from 'expo-linear-gradient';
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import Animated, { interpolate } from 'react-native-reanimated';
-import { interpolateColor, loop, useValue } from 'react-native-redash';
+import Animated, { interpolateNode, useValue } from 'react-native-reanimated';
+import { interpolateColor, loop } from 'react-native-redash/lib/module/v1';
 import {
-  ICustomViewStyle,
-  DEFAULT_ANIMATION_DIRECTION,
-  DEFAULT_ANIMATION_TYPE,
-  DEFAULT_BONE_COLOR,
-  DEFAULT_BORDER_RADIUS,
-  DEFAULT_EASING,
-  DEFAULT_DURATION,
-  DEFAULT_HIGHLIGHT_COLOR,
-  DEFAULT_LOADING,
-  ISkeletonContentProps,
-  IDirection
-} from './Constants';
+    DEFAULT_ANIMATION_DIRECTION,
+    DEFAULT_ANIMATION_TYPE,
+    DEFAULT_BONE_COLOR,
+    DEFAULT_BORDER_RADIUS,
+    DEFAULT_DURATION,
+    DEFAULT_EASING,
+    DEFAULT_HIGHLIGHT_COLOR,
+    DEFAULT_LOADING,
+    ICustomViewStyle,
+    IDirection,
+    ISkeletonContentProps
+} from './constants';
 
 const { useCode, set, cond, eq } = Animated;
 const { useState, useCallback } = React;
@@ -24,22 +24,22 @@ const styles = StyleSheet.create({
   absoluteGradient: {
     height: '100%',
     position: 'absolute',
-    width: '100%'
+    width: '100%',
   },
   container: {
     alignItems: 'center',
     flex: 1,
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   gradientChild: {
-    flex: 1
-  }
+    flex: 1,
+  },
 });
 
 const useLayout = () => {
   const [size, setSize] = useState<any>({ width: 0, height: 0 });
 
-  const onLayout = useCallback(event => {
+  const onLayout = useCallback((event) => {
     const { width, height } = event.nativeEvent.layout;
     setSize({ width, height });
   }, []);
@@ -57,7 +57,7 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
   isLoading = DEFAULT_LOADING,
   boneColor = DEFAULT_BONE_COLOR,
   highlightColor = DEFAULT_HIGHLIGHT_COLOR,
-  children
+  children,
 }) => {
   const animationValue = useValue(0);
   const loadingValue = useValue(isLoading ? 1 : 0);
@@ -75,9 +75,9 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
               animationValue,
               loop({
                 duration,
-                easing
+                easing,
               })
-            )
+            ),
           ],
           [
             set(
@@ -85,11 +85,11 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
               loop({
                 duration: duration! / 2,
                 easing,
-                boomerang: true
+                boomerang: true,
               })
-            )
+            ),
           ]
-        )
+        ),
       ]),
     [loadingValue, shiverValue, animationValue]
   );
@@ -142,7 +142,7 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
       width: boneWidth,
       height: boneHeight,
       borderRadius: borderRadius || DEFAULT_BORDER_RADIUS,
-      ...boneLayout
+      ...boneLayout,
     };
     if (animationType !== 'pulse') {
       boneStyle.overflow = 'hidden';
@@ -186,9 +186,9 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
       {
         backgroundColor: interpolateColor(animationValue, {
           inputRange: [0, 1],
-          outputRange: [boneColor!, highlightColor!]
-        })
-      }
+          outputRange: [boneColor!, highlightColor!],
+        }),
+      },
     ];
     if (animationType === 'none') pulseStyles.pop();
     return pulseStyles;
@@ -222,9 +222,9 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
       animationDirection === 'horizontalLeft' ||
       animationDirection === 'horizontalRight'
     ) {
-      const interpolatedPosition = interpolate(animationValue, {
+      const interpolatedPosition = interpolateNode(animationValue, {
         inputRange: [0, 1],
-        outputRange: getPositionRange(boneLayout)
+        outputRange: getPositionRange(boneLayout),
       });
       if (
         animationDirection === 'verticalTop' ||
@@ -290,13 +290,13 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
           yOutputRange.reverse();
         }
       }
-      let translateX = interpolate(animationValue, {
+      let translateX = interpolateNode(animationValue, {
         inputRange: [0, 1],
-        outputRange: xOutputRange
+        outputRange: xOutputRange,
       });
-      let translateY = interpolate(animationValue, {
+      let translateY = interpolateNode(animationValue, {
         inputRange: [0, 1],
-        outputRange: yOutputRange
+        outputRange: yOutputRange,
       });
       // swapping the translates if width is the main dim
       if (mainDimension === boneWidth)
@@ -333,7 +333,7 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
   ): JSX.Element => {
     const animatedStyle: any = {
       transform: [getGradientTransform(layoutStyle)],
-      ...getGradientSize(layoutStyle)
+      ...getGradientSize(layoutStyle),
     };
     return (
       <View key={layoutStyle.key || key} style={getBoneStyles(layoutStyle)}>
