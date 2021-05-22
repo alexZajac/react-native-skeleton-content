@@ -41,7 +41,7 @@ import SkeletonContent from 'react-native-skeleton-content';
 - **Custom Layout** : You provide a prop `layout` to the component specifying the size of the bones (see the [Examples](#examples) section below). Herunder is the example with a custom layout. A key prop for each child is optionnal but highly recommended.
 
 ```jsx
-export default function Placehoder() {
+export default function Placeholder() {
   return (
     <SkeletonContent
       containerStyle={{ flex: 1, width: 300 }}
@@ -61,7 +61,7 @@ export default function Placehoder() {
 3.  Then simply sync the prop `isLoading` to your state to show/hide the SkeletonContent when the assets/data are available to the user.
 
 ```jsx
-export default function Placehoder () {
+export default function Placeholder () {
   const [loading, setLoading] = useState(true);
   return (
     <SkeletonContent
@@ -99,7 +99,7 @@ See the playground section to experiment :
 </p>
 
 ```javascript
-export default function Placehoder () {
+export default function Placeholder () {
   return (
     <SkeletonContent
         containerStyle={{flex: 1, width: 300}}
@@ -118,7 +118,7 @@ export default function Placehoder () {
 </p>
 
 ```jsx
-export default function Placehoder () {
+export default function Placeholder () {
   return (
     <SkeletonContent
         containerStyle={{flex: 1, width: 300}}
@@ -139,7 +139,7 @@ export default function Placehoder () {
 </p>
 
 ```jsx
-export default function Placehoder () {
+export default function Placeholder () {
   return (
     <SkeletonContent
         containerStyle={{flex: 1, width: 300}}
