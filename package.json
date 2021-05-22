@@ -1,6 +1,6 @@
 {
   "name": "react-native-skeleton-content",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "description": "A simple and fully customizable React Native component that implements a skeleton-like loader",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
