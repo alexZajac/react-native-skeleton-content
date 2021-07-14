@@ -30,11 +30,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '100%'
   },
-  container: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center'
-  },
   gradientChild: {
     flex: 1
   }
@@ -80,7 +75,7 @@ const useLayout = () => {
 };
 
 const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
-  containerStyle = styles.container,
+  containerStyle,
   easing = DEFAULT_EASING,
   duration = DEFAULT_DURATION,
   layout = [],
