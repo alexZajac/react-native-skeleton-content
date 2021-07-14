@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ViewStyle } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Animated, { interpolateNode } from 'react-native-reanimated';
 import {
@@ -39,6 +39,25 @@ const styles = StyleSheet.create({
     flex: 1
   }
 });
+
+const childrenToLayout = (children: any, layout: ICustomViewStyle[] = []) => {
+  React.Children.forEach(children, child => {
+    const style: ViewStyle = Array.isArray(child.props.style)
+      ? Object.assign({}, ...child.props.style)
+      : child.props.style;
+
+    if (child.props?.children) {
+      return layout.push({
+        ...style,
+        children: childrenToLayout(child.props.children)
+      });
+    }
+
+    return layout.push({ ...style });
+  });
+
+  return layout;
+};
 
 const useLayout = () => {
   const [size, setSize] = useState<any>({ width: 0, height: 0 });
@@ -358,32 +377,29 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
     childrenItems: any,
     prefix: string | number = ''
   ): JSX.Element[] => {
-    if (bonesLayout && bonesLayout.length > 0) {
-      const iterator: number[] = new Array(bonesLayout.length).fill(0);
-      return iterator.map((_, i) => {
-        // has a nested layout
-        if (bonesLayout[i].children && bonesLayout[i].children!.length > 0) {
-          const containerPrefix = bonesLayout[i].key || `bone_container_${i}`;
-          const { children: childBones, ...layoutStyle } = bonesLayout[i];
-          return getBoneContainer(
-            layoutStyle,
-            getBones(childBones, [], containerPrefix),
-            containerPrefix
-          );
-        }
-        if (animationType === 'pulse' || animationType === 'none') {
-          return getStaticBone(bonesLayout[i], prefix ? `${prefix}_${i}` : i);
-        }
-        return getShiverBone(bonesLayout[i], prefix ? `${prefix}_${i}` : i);
-      });
-      // no layout, matching children's layout
+    let bones = bonesLayout;
+
+    if (!bones || bones.length === 0) {
+      bones = childrenToLayout(childrenItems);
     }
-    return React.Children.map(childrenItems, (child, i) => {
-      const styling = child.props.style || {};
-      if (animationType === 'pulse' || animationType === 'none') {
-        return getStaticBone(styling, i);
+
+    return bones.map((bone, i) => {
+      // has a nested layout
+      if (bone.children && bone.children!.length > 0) {
+        const containerPrefix = bone.key || `bone_container_${i}`;
+        const { children: childBones, ...layoutStyle } = bone;
+        return getBoneContainer(
+          layoutStyle,
+          getBones(childBones, [], containerPrefix),
+          containerPrefix
+        );
       }
-      return getShiverBone(styling, i);
+
+      if (animationType === 'pulse' || animationType === 'none') {
+        return getStaticBone(bone, prefix ? `${prefix}_${i}` : i);
+      }
+
+      return getShiverBone(bone, prefix ? `${prefix}_${i}` : i);
     });
   };
 
