@@ -46,6 +46,15 @@ const childrenToLayout = (children: any, layout: ICustomViewStyle[] = []) => {
       ? Object.assign({}, ...child.props.style)
       : child.props.style;
 
+    // If children is not View component
+    // Then assume it is custom layout component
+    if (child.type?.displayName !== 'View') {
+      return layout.push({
+        ...style,
+        component: child
+      });
+    }
+
     if (child.props?.children) {
       return layout.push({
         ...style,
@@ -384,6 +393,10 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
     }
 
     return bones.map((bone, i) => {
+      if (bone.component) {
+        return bone.component;
+      }
+
       // has a nested layout
       if (bone.children && bone.children!.length > 0) {
         const containerPrefix = bone.key || `bone_container_${i}`;
