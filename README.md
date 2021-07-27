@@ -1,5 +1,7 @@
 ## React Native Skeleton Content
 
+<!---https://raw.githubusercontent.com/alexZajac/react-native-skeleton-content/master/demos/main.gif-->
+
 > If you are not using expo, please head up to [this page](https://github.com/alexZajac/react-native-skeleton-content-nonexpo) instead.
 
 <img width="220px" align="right" src="https://raw.githubusercontent.com/alexZajac/react-native-skeleton-content/master/demos/main.gif" />
