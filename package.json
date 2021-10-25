@@ -17,8 +17,8 @@
   ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "format": "prettier --write src/**/*.{js,jsx,ts,tsx}",
-    "lint": "eslint --fix src/**/*.{js,jsx,ts,tsx}",
+    "format": "prettier --write src/**/*.{ts,tsx}",
+    "lint": "eslint --fix src/**/*.{ts,tsx}",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
@@ -82,7 +82,8 @@
     "typescript": "^3.6.4"
   },
   "dependencies": {
-    "expo-linear-gradient": "~9.2.0",
+    "@unimodules/core": "^7.1.2",
+    "expo-linear-gradient": "^10.0.3",
     "react-native-reanimated": "2.2.0",
     "react-native-redash": "^16.0.11"
   }
