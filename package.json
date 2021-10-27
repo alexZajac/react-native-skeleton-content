@@ -82,7 +82,7 @@
     "typescript": "^3.6.4"
   },
   "dependencies": {
-    "expo-linear-gradient": "~9.1.0",
+    "expo-linear-gradient": "~9.2.0",
     "react-native-reanimated": "2.1.0",
     "react-native-redash": "^16.0.11"
   }
