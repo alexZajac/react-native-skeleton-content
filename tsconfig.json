@@ -10,12 +10,7 @@
     "moduleResolution": "node",
     "baseUrl": "./",
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "paths": {
-      "react-native-redash/lib/module/v1": [
-        "./node_modules/react-native-redash/lib/typescript/v1/index.d.ts"
-      ]
-    }
+    "esModuleInterop": true
   },
   "include": ["./src"],
   "exclude": [
