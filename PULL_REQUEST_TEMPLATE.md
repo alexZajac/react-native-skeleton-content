@@ -1,5 +1,5 @@
 Hello there! 👋 
-Please follow the steps below to tell us about your contribution.
+Please follow the steps below to tell us about your contribution:
 
 1. Copy the correct template for your contribution
   - 🐛 Are you fixing a bug? Copy the template from [there](https://gist.github.com/alexZajac/d82e0ed1d75cc6b06bc747d1b00aafca)
