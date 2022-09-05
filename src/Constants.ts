@@ -16,6 +16,7 @@ type _animationDirection =
 export interface ICustomViewStyle extends ViewStyle {
   children?: ICustomViewStyle[];
   key?: number | string;
+  component?: JSX.Element;
 }
 
 export interface ISkeletonContentProps {
