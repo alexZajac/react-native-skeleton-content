@@ -1,5 +1,5 @@
 import { StyleProp, ViewStyle } from 'react-native';
-import Animated, { EasingNode } from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 
 type _animationType = 'none' | 'shiver' | 'pulse' | undefined;
 type _animationDirection =
@@ -43,10 +43,4 @@ export const DEFAULT_ANIMATION_DIRECTION: _animationDirection =
   'horizontalRight';
 export const DEFAULT_BONE_COLOR = '#E1E9EE';
 export const DEFAULT_HIGHLIGHT_COLOR = '#F2F8FC';
-export const DEFAULT_EASING: Animated.EasingNodeFunction = EasingNode.bezier(
-  0.5,
-  0,
-  0.25,
-  1
-);
 export const DEFAULT_LOADING = true;
