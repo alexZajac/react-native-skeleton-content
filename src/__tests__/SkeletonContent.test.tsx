@@ -9,13 +9,13 @@ import {
   ISkeletonContentProps,
   DEFAULT_BONE_COLOR,
   DEFAULT_HIGHLIGHT_COLOR,
-  DEFAULT_BORDER_RADIUS
+  DEFAULT_BORDER_RADIUS,
 } from '../Constants';
 
 const staticStyles = {
   borderRadius: DEFAULT_BORDER_RADIUS,
   overflow: 'hidden',
-  backgroundColor: DEFAULT_BONE_COLOR
+  backgroundColor: DEFAULT_BONE_COLOR,
 };
 
 describe('SkeletonComponent test suite', () => {
@@ -29,19 +29,19 @@ describe('SkeletonComponent test suite', () => {
       {
         width: 240,
         height: 100,
-        marginBottom: 10
+        marginBottom: 10,
       },
       {
         width: 180,
         height: 40,
         borderRadius: 20,
-        backgroundColor: 'grey'
-      }
+        backgroundColor: 'grey',
+      },
     ];
     const props: ISkeletonContentProps = {
       layout,
       isLoading: true,
-      animationType: 'none'
+      animationType: 'none',
     };
     const instance = create(<SkeletonContent {...props} />);
     const component = instance.root;
@@ -52,12 +52,12 @@ describe('SkeletonComponent test suite', () => {
     expect(bones[0].props.style).toEqual({
       alignItems: 'center',
       flex: 1,
-      justifyContent: 'center'
+      justifyContent: 'center',
     });
     // default props that are not set
     expect(bones[1].props.style).toEqual([{ ...layout[0], ...staticStyles }]);
     expect(bones[2].props.style).toEqual([
-      { overflow: 'hidden', ...layout[1] }
+      { overflow: 'hidden', ...layout[1] },
     ]);
     expect(instance.toJSON()).toMatchSnapshot();
   });
@@ -65,22 +65,24 @@ describe('SkeletonComponent test suite', () => {
   it('should render the correct bones for children', () => {
     const props: ISkeletonContentProps = {
       isLoading: true,
-      animationType: 'shiver'
+      animationType: 'shiver',
     };
     const w1 = { height: 100, width: 200 };
     const w2 = { height: 120, width: 20 };
     const w3 = { height: 80, width: 240 };
     const children = [w1, w2, w3];
-    const TestComponent = ({
+    function TestComponent({
       isLoading,
-      animationType
-    }: ISkeletonContentProps) => (
-      <SkeletonContent isLoading={isLoading} animationType={animationType}>
-        {children.map(c => (
-          <View key={c.height} style={c} />
-        ))}
-      </SkeletonContent>
-    );
+      animationType,
+    }: ISkeletonContentProps) {
+      return (
+        <SkeletonContent isLoading={isLoading} animationType={animationType}>
+          {children.map((c) => (
+            <View key={c.height} style={c} />
+          ))}
+        </SkeletonContent>
+      );
+    }
     const instance = create(<TestComponent {...props} />);
     let component = instance.root;
     // finding children count
@@ -90,15 +92,15 @@ describe('SkeletonComponent test suite', () => {
     bones = component.findAllByType(Animated.View);
     expect(bones[1].props.style).toEqual({
       ...staticStyles,
-      ...w1
+      ...w1,
     });
     expect(bones[3].props.style).toEqual({
       ...staticStyles,
-      ...w2
+      ...w2,
     });
     expect(bones[5].props.style).toEqual({
       ...staticStyles,
-      ...w3
+      ...w3,
     });
 
     // re-update with pulse animation
@@ -109,23 +111,23 @@ describe('SkeletonComponent test suite', () => {
     expect(bones[1].props.style).toEqual([
       {
         ...w1,
-        borderRadius: DEFAULT_BORDER_RADIUS
+        borderRadius: DEFAULT_BORDER_RADIUS,
       },
-      { backgroundColor: { ' __value': 4278190080 } }
+      { backgroundColor: { ' __value': 4278190080 } },
     ]);
     expect(bones[2].props.style).toEqual([
       {
         ...w2,
-        borderRadius: DEFAULT_BORDER_RADIUS
+        borderRadius: DEFAULT_BORDER_RADIUS,
       },
-      { backgroundColor: { ' __value': 4278190080 } }
+      { backgroundColor: { ' __value': 4278190080 } },
     ]);
     expect(bones[3].props.style).toEqual([
       {
         ...w3,
-        borderRadius: DEFAULT_BORDER_RADIUS
+        borderRadius: DEFAULT_BORDER_RADIUS,
       },
-      { backgroundColor: { ' __value': 4278190080 } }
+      { backgroundColor: { ' __value': 4278190080 } },
     ]);
     expect(instance.toJSON()).toMatchSnapshot();
   });
@@ -137,7 +139,7 @@ describe('SkeletonComponent test suite', () => {
     const props: ISkeletonContentProps = {
       layout,
       isLoading: true,
-      animationType: 'shiver'
+      animationType: 'shiver',
     };
     const childStyle = { fontSize: 24 };
     const instance = create(
@@ -152,11 +154,11 @@ describe('SkeletonComponent test suite', () => {
     bones = component.findAllByType(Animated.View);
     expect(bones[1].props.style).toEqual({
       ...staticStyles,
-      ...w1
+      ...w1,
     });
     expect(bones[3].props.style).toEqual({
       ...staticStyles,
-      ...w2
+      ...w2,
     });
     let children = component.findAllByType(Text);
     // no child since it's loading
@@ -188,11 +190,11 @@ describe('SkeletonComponent test suite', () => {
     bones = component.findAllByType(Animated.View);
     expect(bones[1].props.style).toEqual({
       ...staticStyles,
-      ...w1
+      ...w1,
     });
     expect(bones[3].props.style).toEqual({
       ...staticStyles,
-      ...w2
+      ...w2,
     });
     children = instance.root.findAllByType(Text);
     // no child since it's loading
@@ -211,25 +213,25 @@ describe('SkeletonComponent test suite', () => {
         children: [
           {
             width: 200,
-            height: 120
+            height: 120,
           },
           {
             width: 180,
-            height: 100
-          }
-        ]
+            height: 100,
+          },
+        ],
       },
       {
         width: 180,
         height: 40,
         borderRadius: 20,
-        backgroundColor: 'grey'
-      }
+        backgroundColor: 'grey',
+      },
     ];
     const props: ISkeletonContentProps = {
       layout,
       isLoading: true,
-      animationType: 'shiver'
+      animationType: 'shiver',
     };
     const instance = create(<SkeletonContent {...props} />);
     const component = instance.root;
@@ -241,20 +243,20 @@ describe('SkeletonComponent test suite', () => {
     expect(bones[1].props.style).toEqual({
       flexDirection: 'row',
       width: 320,
-      height: 300
+      height: 300,
     });
     // testing that styles for nested layout and last child persist
     expect(bones[2].props.style).toEqual({
       ...staticStyles,
-      ...layout[0].children[0]
+      ...layout[0].children[0],
     });
     expect(bones[4].props.style).toEqual({
       ...staticStyles,
-      ...layout[0].children[1]
+      ...layout[0].children[1],
     });
     expect(bones[6].props.style).toEqual({
       ...staticStyles,
-      ...layout[1]
+      ...layout[1],
     });
     expect(instance.toJSON()).toMatchSnapshot();
   });
@@ -264,26 +266,26 @@ describe('SkeletonComponent test suite', () => {
     const parentWidth = 320;
     const containerStyle = {
       width: parentWidth,
-      height: parentHeight
+      height: parentHeight,
     };
     const layout = [
       {
         width: '20%',
         height: '50%',
         borderRadius: 20,
-        backgroundColor: 'grey'
+        backgroundColor: 'grey',
       },
       {
         width: '50%',
         height: '10%',
-        borderRadius: 10
-      }
+        borderRadius: 10,
+      },
     ];
     const props: ISkeletonContentProps = {
       layout,
       isLoading: true,
       animationType: 'shiver',
-      containerStyle
+      containerStyle,
     };
     const instance = create(<SkeletonContent {...props} />);
     const component = instance.root;
@@ -295,11 +297,11 @@ describe('SkeletonComponent test suite', () => {
     // testing that styles of childs corresponds to percentages
     expect(bones[1].props.style).toEqual({
       ...staticStyles,
-      ...layout[0]
+      ...layout[0],
     });
     expect(bones[3].props.style).toEqual({
       ...staticStyles,
-      ...layout[1]
+      ...layout[1],
     });
     expect(instance.toJSON()).toMatchSnapshot();
   });
@@ -310,17 +312,19 @@ describe('SkeletonComponent test suite', () => {
         {
           width: 240,
           height: 100,
-          marginBottom: 10
-        }
+          marginBottom: 10,
+        },
       ],
       isLoading: true,
-      animationDirection: 'diagonalDownLeft'
+      animationDirection: 'diagonalDownLeft',
     };
-    const TestComponent = (props: ISkeletonContentProps) => (
-      <SkeletonContent {...props}>
-        <Animated.View style={{ height: 100, width: 200 }} />
-      </SkeletonContent>
-    );
+    function TestComponent(props: ISkeletonContentProps) {
+      return (
+        <SkeletonContent {...props}>
+          <Animated.View style={{ height: 100, width: 200 }} />
+        </SkeletonContent>
+      );
+    }
     const component = create(<TestComponent {...customProps} />);
     let gradient = component.root.findByType(LinearGradient);
     expect(gradient).toBeDefined();
@@ -333,12 +337,23 @@ describe('SkeletonComponent test suite', () => {
       layout: [
         {
           width: 240,
-          height: 300
-        }
-      ]
+          height: 300,
+        },
+      ],
     };
     component.update(
       <SkeletonContent {...customProps} animationDirection="diagonalDownLeft">
+        <Animated.View style={{ height: 300, width: 200 }} />
+      </SkeletonContent>
+    );
+
+    gradient = component.root.findByType(LinearGradient);
+    expect(gradient).toBeDefined();
+    expect(gradient.props.start).toEqual({ x: 0, y: 0 });
+    expect(gradient.props.end).toEqual({ x: 1, y: 0 });
+
+    component.update(
+      <SkeletonContent {...customProps} animationDirection="diagonalDownRight">
         <Animated.View style={{ height: 300, width: 200 }} />
       </SkeletonContent>
     );
@@ -395,7 +410,7 @@ describe('SkeletonComponent test suite', () => {
     expect(gradient.props.colors).toEqual([
       DEFAULT_BONE_COLOR,
       DEFAULT_HIGHLIGHT_COLOR,
-      DEFAULT_BONE_COLOR
+      DEFAULT_BONE_COLOR,
     ]);
   });
 });
