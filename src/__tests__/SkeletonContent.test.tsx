@@ -353,6 +353,17 @@ describe('SkeletonComponent test suite', () => {
     expect(gradient.props.end).toEqual({ x: 1, y: 0 });
 
     component.update(
+      <SkeletonContent {...customProps} animationDirection="diagonalDownRight">
+        <Animated.View style={{ height: 300, width: 200 }} />
+      </SkeletonContent>
+    );
+
+    gradient = component.root.findByType(LinearGradient);
+    expect(gradient).toBeDefined();
+    expect(gradient.props.start).toEqual({ x: 0, y: 0 });
+    expect(gradient.props.end).toEqual({ x: 1, y: 0 });
+
+    component.update(
       <SkeletonContent {...customProps} animationDirection="verticalTop">
         <Text style={{ fontSize: 24 }} />
       </SkeletonContent>
