@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
+import {LayoutChangeEvent, StyleSheet, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Animated, { interpolateNode } from 'react-native-reanimated';
 import {
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
 const useLayout = () => {
   const [size, setSize] = useState<any>({ width: 0, height: 0 });
 
-  const onLayout = useCallback(event => {
+  const onLayout = useCallback((event: LayoutChangeEvent) => {
     const { width, height } = event.nativeEvent.layout;
     setSize({ width, height });
   }, []);
@@ -266,8 +266,8 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
         rotateAngle += additionalRotate;
       const sinComponent = Math.sin(diagonalAngle) * distanceFactor;
       const cosComponent = Math.cos(diagonalAngle) * distanceFactor;
-      let xOutputRange = [0, 0];
-      let yOutputRange = [0, 0];
+      let xOutputRange: number[];
+      let yOutputRange: number[];
       if (
         animationDirection === 'diagonalDownRight' ||
         animationDirection === 'diagonalTopLeft'
