@@ -70,7 +70,7 @@
     "eslint": "8.22.0",
     "eslint-config-airbnb-typescript-prettier": "^5.0.0",
     "jest": "^26.0.24",
-    "jest-expo": "^46.0.0",
+    "jest-expo": "^49.0.0",
     "prettier": "^2.7.1",
     "react": "18.0.0",
     "react-native": "^0.69.5",
