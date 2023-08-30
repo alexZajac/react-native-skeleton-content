@@ -18,6 +18,12 @@ React native Skeleton Content, a simple yet fully customizable component made to
 [![Coverage Status](https://coveralls.io/repos/github/alexZajac/react-native-skeleton-content/badge.svg?branch=master)](https://coveralls.io/github/alexZajac/react-native-skeleton-content?branch=master)
 [![npm version](https://img.shields.io/npm/v/react-native-skeleton-content.svg?style=flat-square)](https://www.npmjs.com/package/react-native-skeleton-content)
 
+## Important ⚠️
+
+If you are using latest react native follow this to avoid error [Visit](https://github.com/software-mansion/react-native-reanimated/pull/3441#issue-1329708619)
+
+
+
 - [React Native Skeleton Content](#react-native-skeleton-content)
   - [Installation](#installation)
   - [Usage](#usage)
@@ -36,10 +42,6 @@ React native Skeleton Content, a simple yet fully customizable component made to
 ```javascript
 import SkeletonContent from 'react-native-skeleton-content';
 ```
-
-## Important ⚠️
-
-If you are using latest react native follow this to avoid error [Visit](https://github.com/software-mansion/react-native-reanimated/pull/3441#issue-1329708619)
 
 2.  Once you create the SkeletonContent, you have two options:
 
