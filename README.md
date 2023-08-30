@@ -37,6 +37,10 @@ React native Skeleton Content, a simple yet fully customizable component made to
 import SkeletonContent from 'react-native-skeleton-content';
 ```
 
+## Important ⚠️
+
+If you are using latest react native follow this to avoid error [Visit](https://github.com/software-mansion/react-native-reanimated/pull/3441#issue-1329708619)
+
 2.  Once you create the SkeletonContent, you have two options:
 
 - **Child Layout** : The component will figure out the layout of its bones with the dimensions of its direct children.
