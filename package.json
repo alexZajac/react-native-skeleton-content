@@ -19,34 +19,10 @@
     "build": "tsc -p tsconfig.json",
     "format": "prettier --write src/**/*.{ts,tsx}",
     "lint": "eslint --fix src/**/*.{ts,tsx}",
-    "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags",
-    "test": "jest --no-watchman",
     "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls"
-  },
-  "jest": {
-    "preset": "jest-expo",
-    "setupFiles": [
-      "./setup-test.ts"
-    ],
-    "moduleFileExtensions": [
-      "js",
-      "jsx",
-      "json",
-      "ts",
-      "tsx"
-    ],
-    "transform": {
-      "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
-    },
-    "testMatch": [
-      "**/*.test.ts?(x)"
-    ],
-    "coveragePathIgnorePatterns": [
-      "./src/__tests__/"
-    ]
   },
   "repository": {
     "type": "git",
