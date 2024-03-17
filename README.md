@@ -27,7 +27,10 @@ React native Skeleton Content, a simple yet fully customizable component made to
 
 ### Installation
 
+Note: You must use Expo to use this library.
+
 `npm install react-native-skeleton-content`
+`npm install react-native-gesture-handler`
 
 ### Usage
 
